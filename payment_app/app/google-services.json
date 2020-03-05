@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1070473058966",
+    "firebase_url": "https://payment-tracker-af8ff.firebaseio.com",
+    "project_id": "payment-tracker-af8ff",
+    "storage_bucket": "payment-tracker-af8ff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1070473058966:android:e47c4dc43f9287d7e180b7",
+        "android_client_info": {
+          "package_name": "com.example.payment_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1070473058966-ll3r407ji7nvje99qu0po32bscjlmsc2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.payment_app",
+            "certificate_hash": "10458b463557481b676b43c509912b0e149f7e98"
+          }
+        },
+        {
+          "client_id": "1070473058966-uib138cbnjrgeq2etrcl487g6adut13e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDetGK69uCcAUVqCdPMvFkk9r8aOnHlgoc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1070473058966-uib138cbnjrgeq2etrcl487g6adut13e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
