@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">payment_app</string>
+    <string name="Email">Email</string>
+    <string name="Pass">Password</string>
 </resources>

@@ -6,29 +6,90 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/imageb"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/welcom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:padding="10dp"
+        android:paddingLeft="25dp"
+        android:text="Welcome"
+        android:textAlignment="gravity"
+        android:textAllCaps="false"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textIsSelectable="false"
+        android:textSize="36sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="180dp" />
+
+    <LinearLayout
+        android:id="@+id/lilayout1"
+        android:layout_width="412dp"
+        android:layout_height="208dp"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="351dp">
+
+        <EditText
+            android:id="@+id/Email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:ems="10"
+            android:fontFamily="casual"
+            android:hint="@string/Email"
+            android:includeFontPadding="true"
+            android:inputType="textEmailAddress"
+            android:padding="10dp"
+            android:paddingStart="@android:dimen/notification_large_icon_height"
+            android:singleLine="true"
+            android:textColorHint="@color/common_google_signin_btn_text_dark_focused"
+            android:textColorLink="@android:color/black"
+            android:textSize="24sp"
+            android:visibility="visible" />
+
+        <EditText
+            android:id="@+id/Password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:fontFamily="casual"
+            android:hint="@string/Pass"
+            android:inputType="textPassword"
+            android:password="true"
+            android:singleLine="true"
+            android:textSize="24sp"
+            android:visibility="visible" />
+    </LinearLayout>
+
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="582dp" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton2"
+        android:layout_width="132dp"
+        android:layout_height="19dp"
+        android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.684"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="?attr/homeAsUpIndicator"
-        tools:layout_editor_absoluteY="98dp" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="387dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:srcCompat="@android:drawable/presence_online"
+        tools:layout_editor_absoluteY="647dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
