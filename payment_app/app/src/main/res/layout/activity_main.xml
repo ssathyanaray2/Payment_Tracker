@@ -6,24 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="408dp"
-        android:layout_height="732dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/imageb" />
-
 
     <TextView
         android:id="@+id/welcom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="34dp"
-        android:layout_marginEnd="214dp"
-        android:layout_marginBottom="629dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="208dp"
         android:padding="10dp"
         android:paddingLeft="25dp"
         android:text="Welcome"
@@ -33,12 +32,10 @@
         android:textIsSelectable="false"
         android:textSize="36sp"
         android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.443"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
 
     <EditText
         android:id="@+id/Email"
@@ -80,6 +77,37 @@
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="@+id/imageView"
         tools:layout_editor_absoluteX="0dp" />
+
+    <Button
+        android:id="@+id/Submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SIGN IN"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/text2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Password" />
+
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="136dp"
+        android:text="SIGN UP"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Password" />
+
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="137dp"
+        android:text="Forgot Password?"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/text2"
+        app:layout_constraintTop_toBottomOf="@+id/Password" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
