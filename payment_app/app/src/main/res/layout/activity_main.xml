@@ -9,13 +9,11 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="653dp"
+        android:layout_height="1151dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/imageb" />
+        app:srcCompat="@drawable/imageb"
+        tools:layout_editor_absoluteY="-14dp" />
 
     <TextView
         android:id="@+id/welcom"
@@ -84,20 +82,25 @@
         android:layout_height="wrap_content"
         android:text="SIGN IN"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/text2"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Password" />
+        app:layout_constraintTop_toBottomOf="@+id/Password"
+        app:layout_constraintVertical_bias="0.378" />
 
     <TextView
         android:id="@+id/text2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="66dp"
+        android:layout_height="15dp"
         android:layout_marginStart="48dp"
         android:layout_marginTop="136dp"
         android:text="SIGN UP"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.137"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Password" />
+        app:layout_constraintTop_toBottomOf="@+id/Password"
+        app:layout_constraintVertical_bias="0.495" />
 
     <TextView
         android:id="@+id/text2"
@@ -105,6 +108,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="137dp"
         android:text="Forgot Password?"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/text2"
         app:layout_constraintTop_toBottomOf="@+id/Password" />
