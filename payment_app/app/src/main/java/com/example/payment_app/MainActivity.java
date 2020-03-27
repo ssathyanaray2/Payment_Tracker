@@ -52,7 +52,10 @@ public class MainActivity extends AppCompatActivity {
             mAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 public void onComplete(Task<AuthResult> task) {
                     if (!task.isSuccessful()) {
-                        Toast.makeText(MainActivity.this, "Sign in Problem", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, "Signin Problem", Toast.LENGTH_LONG).show();
+                    }
+                    else{
+                        Toast.makeText(MainActivity.this, "SignedIn", Toast.LENGTH_LONG).show();
                     }
                 }
             });
