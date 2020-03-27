@@ -9,23 +9,24 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="411dp"
+        android:layout_height="728dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/imageb" />
 
+
     <TextView
         android:id="@+id/welcom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="208dp"
+        android:layout_marginTop="136dp"
         android:padding="10dp"
         android:paddingLeft="25dp"
-        android:text="Welcome"
+        android:text="@string/Login"
         android:textAlignment="gravity"
         android:textAllCaps="false"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
@@ -41,8 +42,7 @@
         android:id="@+id/Email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="361dp"
-        android:layout_marginBottom="310dp"
+        android:layout_marginBottom="344dp"
         android:ems="10"
         android:fontFamily="casual"
         android:hint="@string/Email"
@@ -55,15 +55,13 @@
         android:textSize="24sp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
-
+        tools:layout_editor_absoluteX="0dp" />
 
     <EditText
         android:id="@+id/Password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="477dp"
-        android:layout_marginBottom="193dp"
+        android:layout_marginBottom="244dp"
         android:ems="10"
         android:fontFamily="casual"
         android:hint="@string/Password"
@@ -75,22 +73,19 @@
         android:textSize="24sp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
         tools:layout_editor_absoluteX="0dp" />
 
     <Button
         android:id="@+id/Submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:layout_marginBottom="77dp"
-        android:text="SIGN UP"
+        android:layout_marginBottom="144dp"
+        android:text="@string/Login"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Password" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
