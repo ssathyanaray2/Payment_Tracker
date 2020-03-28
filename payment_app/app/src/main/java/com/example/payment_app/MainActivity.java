@@ -19,11 +19,25 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText EmailField;
     private EditText Password;
     private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+
+    /*private void startup() {
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            public void onAuthStateChanged(FirebaseAuth firebaseauth) {
+                if (firebaseauth.getCurrentUser() != null) {
+                    startActivity(new Intent(MainActivity.this, reminder.class));
+                }
+
+            }
+        };
+    }*/
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         EmailField=findViewById(R.id.Email);
         Password= findViewById(R.id.Password);
         Button signup= findViewById(R.id.Submit);
+
         signup.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 startSignUp();
@@ -42,11 +57,22 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
+    protected void onStart(){
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser!=null)
+        {
+            startActivity(new Intent(MainActivity.this, reminder.class));
+        }
+        /*mAuth.addAuthStateChanged(mAuthListener);*/
+    }
+
     private void startSignUp(){
         String email=EmailField.getText().toString().trim();
         String pass=Password.getText().toString().trim();
         if(TextUtils.isEmpty(email)|| TextUtils.isEmpty(pass)){
-            Toast.makeText(MainActivity.this, "Enter data correctly", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "Fields are empty", Toast.LENGTH_LONG).show();
         }
         else {
             mAuth.createUserWithEmailAndPassword(email, pass)
