@@ -27,16 +27,14 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
-    /*private void startup() {
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
+       /* mAuthListener = new FirebaseAuth.AuthStateListener() {
             public void onAuthStateChanged(FirebaseAuth firebaseauth) {
                 if (firebaseauth.getCurrentUser() != null) {
                     startActivity(new Intent(MainActivity.this, reminder.class));
                 }
 
             }
-        };
-    }*/
+        };*/
 
 
     @Override
@@ -65,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
         {
             startActivity(new Intent(MainActivity.this, reminder.class));
         }
-        /*mAuth.addAuthStateChanged(mAuthListener);*/
     }
 
     private void startSignUp(){
