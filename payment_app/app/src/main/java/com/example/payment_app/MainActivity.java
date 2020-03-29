@@ -78,7 +78,9 @@ public class MainActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 Toast.makeText(MainActivity.this, "Registered", Toast.LENGTH_LONG).show();
-                                startActivity(new Intent(MainActivity.this, reminder.class));
+                                Intent intent=new Intent(MainActivity.this, reminder.class);
+                                //intent.putExtra("uid",123);
+                                startActivity(intent);
 
                             } else {
                                 Toast.makeText(MainActivity.this, "Registration Problem", Toast.LENGTH_LONG).show();
