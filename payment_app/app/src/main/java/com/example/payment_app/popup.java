@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Window;
+import android.widget.Button;
 
 public class popup extends AppCompatActivity {
 
@@ -20,4 +21,6 @@ public class popup extends AppCompatActivity {
         int height = dm.heightPixels;
         getWindow().setLayout((int)(width*0.7),(int)(height*0.7));
     }
+
+
 }
