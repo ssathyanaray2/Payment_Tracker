@@ -12,9 +12,10 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="8dp"
         android:text="Sign out"
+        app:layout_constraintBottom_toTopOf="@+id/listv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,20 +23,24 @@
         android:id="@+id/popup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:onClick="pop"
         android:text="ADD REMINDER"
+        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintHorizontal_bias="0.252"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/testview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="136dp"
-        android:text="TextView"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="50dp" />
+    <ListView
+        android:id="@+id/listv"
+        android:layout_width="425dp"
+        android:layout_height="647dp"
+        android:background="@drawable/imageb"
+        android:cacheColorHint="@color/common_google_signin_btn_text_dark_default"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/popup"
+        tools:layout_editor_absoluteX="-13dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

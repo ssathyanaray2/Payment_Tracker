@@ -1,6 +1,8 @@
 package com.example.payment_app;
 
 import androidx.appcompat.app.AppCompatActivity;
+import java.io.*;
+import java.util.*;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +13,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ListView;
+import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,13 +34,16 @@ import com.google.firebase.database.MutableData;
 import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.Transaction;
 
-
 public class reminder extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     FirebaseDatabase database;
-    TextView test;
     DatabaseReference mRef;
+    FirebaseUser user;
+    ListView liv;
+    ArrayList<String> list;
+    ArrayAdapter<String> aad;
+    adapter fuser;
 
 
     @Override
@@ -43,16 +52,10 @@ public class reminder extends AppCompatActivity {
         setContentView(R.layout.activity_reminder);
         Button signout=findViewById(R.id.button2);
         mAuth=FirebaseAuth.getInstance();
-        test=(TextView)findViewById(R.id.testview);
-        /*String TAG="user";
-        int a= getIntent().getIntExtra("uid",0);
-        String u=Integer.toString(a);
-        if( a != 0) {
-            Log.i(TAG,u);
-        }
-        TextView t=findViewById(R.id.user);
-        t.setText(u);
-*/
+        liv=(ListView)findViewById(R.id.listv);
+        list=new ArrayList<>();
+        fuser=new adapter();
+        aad=new ArrayAdapter<String>(this,R.layout.reminder_info,R.id.txtviw,list);
         lineup();
         signout.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
@@ -64,33 +67,47 @@ public class reminder extends AppCompatActivity {
 
     }
 
-    private void lineup(){
-        test=findViewById(R.id.testview);
+    private void lineup() {
         database = FirebaseDatabase.getInstance();
-        mRef = database.getReference().child("eX55zTXs0QduJqzikh8RGUl7vDy2").child("1");
+        user=mAuth.getCurrentUser();
+         String uid=user.getUid().toString();
+        mRef = database.getReference().child(uid);
 
-        mRef.addValueEventListener(new ValueEventListener(){
-            public void onDataChange(DataSnapshot datasnapshot){
-                String value=datasnapshot.child("name").getValue().toString();
-                test.setText(value);
-                Toast.makeText(reminder.this, "Value displayed", Toast.LENGTH_LONG).show();
+        mRef.addValueEventListener(new ValueEventListener() {
+            public void onDataChange(DataSnapshot datasnapshot) {
+                for(DataSnapshot ds: datasnapshot.getChildren()) {
+                    fuser = ds.getValue(adapter.class);
+                    list.add("Name :"+fuser.getName().toString()+"\n"+"For :"+fuser.getDescription().toString()+"\n"+"Date :"+fuser.getDate().toString());
+                }
+                liv.setAdapter(aad);
+                liv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+                    public void onItemClick(AdapterView<?> parent,View view,int position,long id){
+                        Toast.makeText(reminder.this,"U clicked:"+position,Toast.LENGTH_LONG).show();
+                    }
+                });
+
             }
-           public void onCancelled(DatabaseError dataerr) {
-               Toast.makeText(reminder.this, "Value not displayed", Toast.LENGTH_LONG).show();
-           }
+
+            public void onCancelled(DatabaseError dataerr) {
+                Toast.makeText(reminder.this, "Value not displayed", Toast.LENGTH_LONG).show();
+            }
         });
+
     }
+
     public void pop(View view){
         Intent intent = new Intent(this, popup.class);
         startActivity(intent);
     }
 
-  /*  private Firebase mRef;
-    private add=(Button) findViewById(R.id.add);
-    mRef=new Firebase("https://payment-tracker-af8ff.firebaseio.com/");
-    add.setOnClickListener(new View.OnClickListener(){
-        public void onClick(View.view){
-
-        }
-    });*/
 }
+ /*String TAG="user";
+        int a= getIntent().getIntExtra("uid",0);
+        String u=Integer.toString(a);
+        if( a != 0) {
+            Log.i(TAG,u);
+        }
+        TextView t=findViewById(R.id.user);
+        t.setText(u);
+*/
+

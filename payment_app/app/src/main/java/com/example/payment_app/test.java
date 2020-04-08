@@ -50,6 +50,7 @@ public class test extends AppCompatActivity {
                         Toast.makeText(test.this, "SignIn Problem", Toast.LENGTH_LONG).show();
                     }
                     else{
+                        finish();
                         Toast.makeText(test.this, "SignedIn", Toast.LENGTH_LONG).show();
                         startActivity(new Intent(test.this, reminder.class));
                     }
