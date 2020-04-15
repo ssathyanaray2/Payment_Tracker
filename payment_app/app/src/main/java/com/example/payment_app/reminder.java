@@ -22,6 +22,9 @@ import android.widget.ListView;
 import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import androidx.core.app.NotificationCompat;
+import android.app.PendingIntent;
+import android.app.NotificationManager;
 
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -62,6 +65,7 @@ public class reminder extends AppCompatActivity {
         fuser=new adapter();
         aad=new ArrayAdapter<String>(this,R.layout.reminder_info,R.id.txtviw,list);
         lineup();
+        notification();
         signout.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 Toast.makeText(reminder.this, "Signed out", Toast.LENGTH_LONG).show();
@@ -98,6 +102,25 @@ public class reminder extends AppCompatActivity {
             }
         });
 
+    }
+    public void notification(){
+        Button btNotification=findViewById(R.id.Notification);
+        btNotification.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                String message="This is a notification";
+                NotificationCompat.Builder builder=new NotificationCompat.Builder(
+                        reminder.this
+                ).setSmallIcon(R.drawable.notify).setContentTitle("Reminder Notification").setContentText(message).setAutoCancel(true);
+
+                Intent intent= new Intent(reminder.this,notify.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("message",message);
+                PendingIntent penIn=PendingIntent.getActivity(reminder.this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                builder.setContentIntent(penIn);
+                NotificationManager nm=(NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+                nm.notify(0,builder.build());
+            }
+        });
     }
 
     public void pop(View view){

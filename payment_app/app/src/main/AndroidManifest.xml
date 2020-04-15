@@ -9,10 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".popup"
-            android:theme="@style/AppTheme.CustomTheme"
-            ></activity>
-        <activity android:name=".reminder"></activity>
+        <activity android:name=".notify"></activity>
+        <activity
+            android:name=".popup"
+            android:theme="@style/AppTheme.CustomTheme" />
+        <activity android:name=".reminder" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".test" ></activity>
+        <activity android:name=".test" />
     </application>
 
 </manifest>
