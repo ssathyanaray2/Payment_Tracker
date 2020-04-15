@@ -1,9 +1,14 @@
 package com.example.payment_app;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+
 import java.io.*;
 import java.util.*;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -99,6 +104,8 @@ public class reminder extends AppCompatActivity {
         Intent intent = new Intent(this, popup.class);
         startActivity(intent);
     }
+
+    
 
 }
  /*String TAG="user";

@@ -10,6 +10,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class popup extends AppCompatActivity {
 
@@ -57,8 +58,7 @@ public class popup extends AppCompatActivity {
         interval+=2;
         String u=String.valueOf(interval);
         String t=name+desc+date+u;
-        TextView test=findViewById(R.id.test);
-        test.setText(t);
+        Toast.makeText(popup.this,t,Toast.LENGTH_LONG).show();
     }
 
 
