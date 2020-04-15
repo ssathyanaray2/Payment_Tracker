@@ -86,7 +86,7 @@ public class reminder extends AppCompatActivity {
             public void onDataChange(DataSnapshot datasnapshot) {
                 for(DataSnapshot ds: datasnapshot.getChildren()) {
                     fuser = ds.getValue(adapter.class);
-                    list.add("Name :"+fuser.getName().toString()+"\n"+"For :"+fuser.getDescription().toString()+"\n"+"Date :"+fuser.getDate().toString());
+                    list.add("\nName :"+fuser.getName().toString()+"\n"+"For :"+fuser.getDescription().toString()+"\n"+"Date :"+fuser.getDate()+"\n".toString());
                 }
                 liv.setAdapter(aad);
                 liv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -107,10 +107,10 @@ public class reminder extends AppCompatActivity {
         Button btNotification=findViewById(R.id.Notification);
         btNotification.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                String message="This is a notification";
+                String message="Policy number 654321789";
                 NotificationCompat.Builder builder=new NotificationCompat.Builder(
                         reminder.this
-                ).setSmallIcon(R.drawable.notify).setContentTitle("Reminder Notification").setContentText(message).setAutoCancel(true);
+                ).setSmallIcon(R.drawable.notify).setContentTitle("Premium payment").setContentText(message).setAutoCancel(true);
 
                 Intent intent= new Intent(reminder.this,notify.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
