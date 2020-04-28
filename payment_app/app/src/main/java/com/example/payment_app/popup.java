@@ -1,5 +1,5 @@
 package com.example.payment_app;
-
+import java.util.HashMap;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,6 +14,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+
 import java.util.Calendar;
 import java.util.TimeZone;
 
@@ -23,6 +29,8 @@ public class popup extends AppCompatActivity {
     private EditText datev;
     private EditText descv;
     private EditText intervalv;
+    FirebaseUser user;
+    private FirebaseAuth mAuth;
 
 
     @Override
@@ -54,7 +62,26 @@ public class popup extends AppCompatActivity {
 
     }
 
+
     private void add_reminder(){
+        HashMap<String,Object> map = new HashMap<>();
+        map.put("namev",namev.getText().toString());
+        map.put("descv",descv.getText().toString());
+        map.put("datev",datev.getText().toString());
+        map.put("intervalv",intervalv.getText().toString());
+        user=mAuth.getCurrentUser();
+        String uid=user.getUid().toString();
+        FirebaseDatabase.getInstance().getReference().child(uid).push()
+                .setValue(map)
+                .addOnCompleteListener(new OnCompleteListener<Void>(){
+                    public void onComplete(Task<Void> task){
+                        Toast.makeText(popup.this,"Data Saved",Toast.LENGTH_LONG).show();
+                    }
+                });
+    }
+
+
+   /* private void add_reminder(){
         // If you want the start times to show up, you have to set them
         Calendar calendar = Calendar.getInstance();
 
@@ -86,7 +113,7 @@ public class popup extends AppCompatActivity {
 
         startActivity(intent);
 
-    }
+    }*/
 
 
 
