@@ -32,6 +32,7 @@ public class popup extends AppCompatActivity {
     private EditText datev;
     private EditText descv;
     private EditText intervalv;
+    private EditText endd;
     private Button add;
     FirebaseUser user;
     private FirebaseAuth mAuth;
@@ -50,12 +51,13 @@ public class popup extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int width=dm.widthPixels;
         int height = dm.heightPixels;
-        getWindow().setLayout((int)(width*0.7),(int)(height*0.7));
+        getWindow().setLayout((int)(width*0.9),(int)(height*0.9));
         mAuth=FirebaseAuth.getInstance();
         namev= findViewById(R.id.name);
         descv = findViewById(R.id.desc);
         datev = findViewById(R.id.date);
         intervalv = findViewById(R.id.interval);
+        endd=findViewById(R.id.enddate);
         add=findViewById(R.id.add);
         user=mAuth.getCurrentUser();
         final String uid=user.getUid().toString();
@@ -67,8 +69,9 @@ public class popup extends AppCompatActivity {
                 HashMap<String,Object> map = new HashMap<>();
                 map.put("name",namev.getText().toString());
                 map.put("description",descv.getText().toString());
-                map.put("date",datev.getText().toString());
+                map.put("Start date",datev.getText().toString());
                 map.put("period",intervalv.getText().toString());
+                map.put("End date",endd.getText().toString());
                 FirebaseDatabase.getInstance().getReference().child(uid).push().setValue(map);
                 Toast.makeText(popup.this,"reminder created",Toast.LENGTH_LONG).show();
                 startActivity(new Intent(popup.this, reminder.class));
@@ -76,5 +79,17 @@ public class popup extends AppCompatActivity {
             }
             });
 
+    }
+    int[] strtodmy(String str){
+        char[] chars = str.toCharArray();
+        int[] dmy = new int[3];
+        int len=str.length();
+        String day =  Character.toString(chars[0]).concat(Character.toString(chars[1]));
+        dmy[0]=Integer.parseInt(day);
+        String month= Character.toString(chars[3]).concat(Character.toString(chars[4]));
+        dmy[1]=Integer.parseInt(month);
+        String year= Character.toString(chars[6]).concat(Character.toString(chars[7])).concat(Character.toString(chars[8])).concat(Character.toString(chars[9]));
+        dmy[2] =Integer.parseInt(year);
+        return dmy;
     }
 }
