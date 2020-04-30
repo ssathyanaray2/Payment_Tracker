@@ -79,21 +79,6 @@ public class popup extends AppCompatActivity {
         endd=findViewById(R.id.enddate);
         add=findViewById(R.id.add);
 
-        final String name= namev.getText().toString();
-        final String desc= descv.getText().toString();
-        final String date= datev.getText().toString();
-        final String endda=endd.getText().toString();
-        final String interval=intervalv.getText().toString();
-        final String eveid=Long.toString(eventID);
-        int temp;
-        try{
-            temp=Integer.parseInt(interval);
-        }
-        catch(NumberFormatException e){
-            temp=0;
-        }
-        final int int_interval=temp;
-
 
         user=mAuth.getCurrentUser();
         final String uid=user.getUid().toString();
@@ -128,6 +113,19 @@ public class popup extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                 String name= namev.getText().toString();
+                 String desc= descv.getText().toString();
+                 String date= datev.getText().toString();
+                 String endda=endd.getText().toString();
+                 String interval=intervalv.getText().toString();
+                 String eveid=Long.toString(eventID);
+                 int int_interval;
+                try{
+                    int_interval=Integer.parseInt(interval);
+                }
+                catch(NumberFormatException e){
+                    int_interval=0;
+                }
                 HashMap<String,Object> map = new HashMap<>();
                 map.put("name",name);
                 map.put("description",desc);
@@ -173,12 +171,14 @@ public class popup extends AppCompatActivity {
         char[] chars = str.toCharArray();
         int[] dmy = new int[3];
         int len=str.length();
-        String day =  Character.toString(chars[0]).concat(Character.toString(chars[1]));
-        dmy[0]=Integer.parseInt(day);
-        String month= Character.toString(chars[3]).concat(Character.toString(chars[4]));
-        dmy[1]=Integer.parseInt(month);
-        String year= Character.toString(chars[6]).concat(Character.toString(chars[7])).concat(Character.toString(chars[8])).concat(Character.toString(chars[9]));
-        dmy[2] =Integer.parseInt(year);
+        if(len==10) {
+            String day = Character.toString(chars[0]).concat(Character.toString(chars[1]));
+            dmy[0] = Integer.parseInt(day);
+            String month = Character.toString(chars[3]).concat(Character.toString(chars[4]));
+            dmy[1] = Integer.parseInt(month);
+            String year = Character.toString(chars[6]).concat(Character.toString(chars[7])).concat(Character.toString(chars[8])).concat(Character.toString(chars[9]));
+            dmy[2] = Integer.parseInt(year);
+        }
         return dmy;
     }
 
