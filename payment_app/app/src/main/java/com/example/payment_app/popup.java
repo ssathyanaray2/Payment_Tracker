@@ -45,6 +45,7 @@ public class popup extends AppCompatActivity {
     private int MY_PERMISSIONS_REQUEST_WRITE_CALENDAR=0;
     boolean permission_granted=false;
     int startYear,startMonth,startDay, startHour, startMinut;
+    long eventID;
     public static final String[] EVENT_PROJECTION = new String[] {
             CalendarContract.Calendars._ID,                           // 0
     };
@@ -76,19 +77,17 @@ public class popup extends AppCompatActivity {
         datev = findViewById(R.id.date);
         intervalv = findViewById(R.id.interval);
         add=findViewById(R.id.add);
-        String name= namev.getText().toString();
-        String desc= descv.getText().toString();
-        String date= datev.getText().toString();
-        String interval=intervalv.getText().toString();
-        int int_interval=Integer.parseInt(interval);
+        final String name= namev.getText().toString();
+        final String desc= descv.getText().toString();
+        final String date= datev.getText().toString();
+        final String interval=intervalv.getText().toString();
+        final String eveid=Long.toString(eventID);
+        final int int_interval=Integer.parseInt(interval);
         user=mAuth.getCurrentUser();
         final String uid=user.getUid().toString();
         final String email=user.getEmail().toString();
 
-        if (ContextCompat.checkSelfPermission(popup.this,
-                Manifest.permission.WRITE_CALENDAR)
-                != PackageManager.PERMISSION_GRANTED) {
-
+        if (ContextCompat.checkSelfPermission(popup.this, Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
             // Permission is not granted
             // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(popup.this,
@@ -122,10 +121,11 @@ public class popup extends AppCompatActivity {
                 map.put("description",desc);
                 map.put("date",date);
                 map.put("period",interval);
+                map.put("eventid",eveid);
                 FirebaseDatabase.getInstance().getReference().child(uid).push().setValue(map);
                 Toast.makeText(popup.this,"reminder created",Toast.LENGTH_LONG).show();
                 if(permission_granted) {
-                    reminder(startYear=2020,startMonth=4,startDay=5, startHour=10, startMinut=0);
+                    reminder(email,date,edate,name,desc,int_interval);
                 }
                 startActivity(new Intent(popup.this, reminder.class));
                 
@@ -184,17 +184,15 @@ public class popup extends AppCompatActivity {
     }
     
 
-    public void reminder(int startYear, int startMonth, int startDay, int startHour, int startMinut){
-        String mailid="sindhura.l.bhat@gmail.com";
+    public void reminder(String mailid,String stdate,String endate,String title,String desc,int interval){
         long calid=userid(mailid);
-        long eventID;
         Calendar beginTime = Calendar.getInstance();
         beginTime.set(startYear, startMonth, startDay, startHour, startMinut);
         long startMillis = beginTime.getTimeInMillis();
 
         ContentValues eventValues = new ContentValues();
         eventValues.put(CalendarContract.Events.CALENDAR_ID, calid);
-        eventValues.put(CalendarContract.Events.TITLE, name);
+        eventValues.put(CalendarContract.Events.TITLE, title);
         eventValues.put(CalendarContract.Events.DESCRIPTION, desc);
         eventValues.put(CalendarContract.Events.EVENT_TIMEZONE, "Asia/Calcutta");
         eventValues.put(CalendarContract.Events.DTSTART, startMillis);
