@@ -134,7 +134,6 @@ public class popup extends AppCompatActivity {
                 map.put("eventid",eveid);
                 map.put("End date",endda);
                 FirebaseDatabase.getInstance().getReference().child(uid).push().setValue(map);
-                Toast.makeText(popup.this,"reminder created",Toast.LENGTH_LONG).show();
                 if(permission_granted) {
                     reminder(email,date,endda,name,desc,int_interval);
                 }
