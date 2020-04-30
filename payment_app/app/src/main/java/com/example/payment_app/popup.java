@@ -1,5 +1,5 @@
 package com.example.payment_app;
-
+import java.util.HashMap;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -25,6 +25,14 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+
 import java.util.Calendar;
 import java.util.TimeZone;
 
@@ -40,9 +48,15 @@ public class popup extends AppCompatActivity {
     public static final String[] EVENT_PROJECTION = new String[] {
             CalendarContract.Calendars._ID,                           // 0
     };
-
     // The indices for the projection array above.
     private static final int PROJECTION_ID_INDEX = 0;
+    private Button add;
+    FirebaseUser user;
+    private FirebaseAuth mAuth;
+    DatabaseReference mRef;
+    FirebaseDatabase database;
+
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,18 +70,21 @@ public class popup extends AppCompatActivity {
         int width=dm.widthPixels;
         int height = dm.heightPixels;
         getWindow().setLayout((int)(width*0.7),(int)(height*0.7));
+        mAuth=FirebaseAuth.getInstance();
         namev= findViewById(R.id.name);
         descv = findViewById(R.id.desc);
         datev = findViewById(R.id.date);
         intervalv = findViewById(R.id.interval);
-        Button add=findViewById(R.id.add);
+        add=findViewById(R.id.add);
+        String name= namev.getText().toString();
+        String desc= descv.getText().toString();
+        String date= datev.getText().toString();
+        String interval=intervalv.getText().toString();
+        int int_interval=Integer.parseInt(interval);
+        user=mAuth.getCurrentUser();
+        final String uid=user.getUid().toString();
+        final String email=user.getEmail().toString();
 
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                add_reminder();
-            }
-            });
         if (ContextCompat.checkSelfPermission(popup.this,
                 Manifest.permission.WRITE_CALENDAR)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -97,6 +114,24 @@ public class popup extends AppCompatActivity {
             permission_granted= true;
         }
 
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HashMap<String,Object> map = new HashMap<>();
+                map.put("name",name);
+                map.put("description",desc);
+                map.put("date",date);
+                map.put("period",interval);
+                FirebaseDatabase.getInstance().getReference().child(uid).push().setValue(map);
+                Toast.makeText(popup.this,"reminder created",Toast.LENGTH_LONG).show();
+                if(permission_granted) {
+                    reminder(startYear=2020,startMonth=4,startDay=5, startHour=10, startMinut=0);
+                }
+                startActivity(new Intent(popup.this, reminder.class));
+                
+            }
+            });
+        
     }
     @Override
     public void onRequestPermissionsResult(int requestCode,
@@ -120,23 +155,19 @@ public class popup extends AppCompatActivity {
 
                 }
             }
-
-
-
     }
 
-
-
-    private void add_reminder(){
+    /*private void add_reminder(){
         String TAG="add_rem",u="add_reminder called",v="not called";
         if(permission_granted) {
-            Log.i(TAG,u);
-            reminder(startYear=2020,startMonth=4,startDay=5, startHour=10, startMinut=0);
-        }
+                    reminder(startYear=2020,startMonth=4,startDay=5, startHour=10, startMinut=0);
+                    Log.i(TAG,u);
+                }
         else{
             Log.i(TAG,v);
         }
-    }
+    }*/
+
     public long userid(String mailid){
         long calID = 0;
         Cursor cur = null;
@@ -160,12 +191,6 @@ public class popup extends AppCompatActivity {
         Calendar beginTime = Calendar.getInstance();
         beginTime.set(startYear, startMonth, startDay, startHour, startMinut);
         long startMillis = beginTime.getTimeInMillis();
-
-        String name= namev.getText().toString();
-        String desc= descv.getText().toString();
-        String date= datev.getText().toString();
-        String temp=intervalv.getText().toString();
-        int interval=Integer.parseInt(temp);
 
         ContentValues eventValues = new ContentValues();
         eventValues.put(CalendarContract.Events.CALENDAR_ID, calid);
