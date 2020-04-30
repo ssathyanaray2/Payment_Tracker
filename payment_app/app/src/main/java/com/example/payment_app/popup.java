@@ -86,6 +86,7 @@ public class popup extends AppCompatActivity {
         final String interval=intervalv.getText().toString();
         final String eveid=Long.toString(eventID);
         int temp;
+
         try{
             temp=Integer.parseInt(interval);
         }
