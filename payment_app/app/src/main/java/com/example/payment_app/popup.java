@@ -45,7 +45,7 @@ public class popup extends AppCompatActivity {
     private EditText endd;
     private int MY_PERMISSIONS_REQUEST_WRITE_CALENDAR=0;
     boolean permission_granted=false;
-    int startYear,startMonth,startDay, startHour, startMinut;
+    int startHour=10, startMinut=0;
     long eventID;
     public static final String[] EVENT_PROJECTION = new String[] {
             CalendarContract.Calendars._ID,
@@ -70,7 +70,7 @@ public class popup extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int width=dm.widthPixels;
         int height = dm.heightPixels;
-        getWindow().setLayout((int)(width*0.9),(int)(height*0.9));
+        getWindow().setLayout((int)(width*0.8),(int)(height*0.8));
         mAuth=FirebaseAuth.getInstance();
         namev= findViewById(R.id.name);
         descv = findViewById(R.id.desc);
@@ -85,7 +85,15 @@ public class popup extends AppCompatActivity {
         final String endda=endd.getText().toString();
         final String interval=intervalv.getText().toString();
         final String eveid=Long.toString(eventID);
-        final int int_interval=Integer.parseInt(interval);
+        int temp;
+        try{
+            temp=Integer.parseInt(interval);
+        }
+        catch(NumberFormatException e){
+            temp=0;
+        }
+        final int int_interval=temp;
+
 
         user=mAuth.getCurrentUser();
         final String uid=user.getUid().toString();
@@ -202,8 +210,8 @@ public class popup extends AppCompatActivity {
 
     public void reminder(String mailid,String stdate,String endate,String title,String desc,int interval){
         long calid=userid(mailid);
-        int [] sta=strtodmy(stdate);
-        int [] end=strtodmy(endate);
+        int[] sta = strtodmy(stdate);
+        int[] end = strtodmy(endate);
         Calendar beginTime = Calendar.getInstance();
         beginTime.set(sta[2],sta[1],sta[0], startHour, startMinut);
         long startMillis = beginTime.getTimeInMillis();

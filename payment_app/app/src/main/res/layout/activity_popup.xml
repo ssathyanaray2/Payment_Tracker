@@ -101,25 +101,25 @@
     <EditText
         android:id="@+id/enddate"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="25dp"
         android:ems="10"
         android:hint="End date"
         android:inputType="date"
-        app:layout_constraintBottom_toTopOf="@id/add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/interval" />
 
     <Button
         android:id="@+id/add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         android:hint="Add"
         android:text="ADD"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/interval" />
+        app:layout_constraintTop_toBottomOf="@+id/enddate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
