@@ -48,9 +48,8 @@ public class popup extends AppCompatActivity {
     int startYear,startMonth,startDay, startHour, startMinut;
     long eventID;
     public static final String[] EVENT_PROJECTION = new String[] {
-            CalendarContract.Calendars._ID,                           // 0
+            CalendarContract.Calendars._ID,
     };
-    // The indices for the projection array above.
     private static final int PROJECTION_ID_INDEX = 0;
     private Button add;
     FirebaseUser user;
@@ -131,7 +130,7 @@ public class popup extends AppCompatActivity {
                 FirebaseDatabase.getInstance().getReference().child(uid).push().setValue(map);
                 Toast.makeText(popup.this,"reminder created",Toast.LENGTH_LONG).show();
                 if(permission_granted) {
-                    reminder(email,date,edate,name,desc,int_interval);
+                    reminder(email,date,endda,name,desc,int_interval);
                 }
                 startActivity(new Intent(popup.this, reminder.class));
                 
@@ -204,10 +203,12 @@ public class popup extends AppCompatActivity {
 
     public void reminder(String mailid,String stdate,String endate,String title,String desc,int interval){
         long calid=userid(mailid);
+        int [] sta=strtodmy(stdate);
+        int [] end=strtodmy(endate);
         Calendar beginTime = Calendar.getInstance();
-        beginTime.set(startYear, startMonth, startDay, startHour, startMinut);
+        beginTime.set(sta[2],sta[1],sta[0], startHour, startMinut);
         long startMillis = beginTime.getTimeInMillis();
-
+        String rrule="FREQ=MONTHLY;BYMONTHDAY=5;INTERVAL=1";
         ContentValues eventValues = new ContentValues();
         eventValues.put(CalendarContract.Events.CALENDAR_ID, calid);
         eventValues.put(CalendarContract.Events.TITLE, title);
@@ -216,7 +217,7 @@ public class popup extends AppCompatActivity {
         eventValues.put(CalendarContract.Events.DTSTART, startMillis);
         eventValues.put(CalendarContract.Events.DURATION, "PT3H");
         eventValues.put(CalendarContract.Events.HAS_ALARM, 1);
-        eventValues.put(CalendarContract.Events.RRULE, "FREQ=MONTHLY;BYMONTHDAY=5;INTERVAL=1");
+        eventValues.put(CalendarContract.Events.RRULE, rrule);
         eventValues.put("eventStatus", 1);
 
         ContentResolver cr = getContentResolver();
