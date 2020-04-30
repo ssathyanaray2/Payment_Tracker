@@ -42,6 +42,7 @@ public class popup extends AppCompatActivity {
     private EditText datev;
     private EditText descv;
     private EditText intervalv;
+    private EditText endd;
     private int MY_PERMISSIONS_REQUEST_WRITE_CALENDAR=0;
     boolean permission_granted=false;
     int startYear,startMonth,startDay, startHour, startMinut;
@@ -70,19 +71,23 @@ public class popup extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int width=dm.widthPixels;
         int height = dm.heightPixels;
-        getWindow().setLayout((int)(width*0.7),(int)(height*0.7));
+        getWindow().setLayout((int)(width*0.9),(int)(height*0.9));
         mAuth=FirebaseAuth.getInstance();
         namev= findViewById(R.id.name);
         descv = findViewById(R.id.desc);
         datev = findViewById(R.id.date);
         intervalv = findViewById(R.id.interval);
+        endd=findViewById(R.id.enddate);
         add=findViewById(R.id.add);
+
         final String name= namev.getText().toString();
         final String desc= descv.getText().toString();
         final String date= datev.getText().toString();
+        final String endda=endd.getText().toString();
         final String interval=intervalv.getText().toString();
         final String eveid=Long.toString(eventID);
         final int int_interval=Integer.parseInt(interval);
+
         user=mAuth.getCurrentUser();
         final String uid=user.getUid().toString();
         final String email=user.getEmail().toString();
@@ -122,6 +127,7 @@ public class popup extends AppCompatActivity {
                 map.put("date",date);
                 map.put("period",interval);
                 map.put("eventid",eveid);
+                map.put("End date",endda);
                 FirebaseDatabase.getInstance().getReference().child(uid).push().setValue(map);
                 Toast.makeText(popup.this,"reminder created",Toast.LENGTH_LONG).show();
                 if(permission_granted) {
@@ -155,6 +161,18 @@ public class popup extends AppCompatActivity {
 
                 }
             }
+    }
+    int[] strtodmy(String str){
+        char[] chars = str.toCharArray();
+        int[] dmy = new int[3];
+        int len=str.length();
+        String day =  Character.toString(chars[0]).concat(Character.toString(chars[1]));
+        dmy[0]=Integer.parseInt(day);
+        String month= Character.toString(chars[3]).concat(Character.toString(chars[4]));
+        dmy[1]=Integer.parseInt(month);
+        String year= Character.toString(chars[6]).concat(Character.toString(chars[7])).concat(Character.toString(chars[8])).concat(Character.toString(chars[9]));
+        dmy[2] =Integer.parseInt(year);
+        return dmy;
     }
 
     /*private void add_reminder(){
