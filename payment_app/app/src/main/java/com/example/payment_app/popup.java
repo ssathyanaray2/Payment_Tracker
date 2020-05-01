@@ -19,6 +19,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.RadioGroup;
+import android.widget.RadioButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,6 +45,9 @@ public class popup extends AppCompatActivity {
     private EditText descv;
     private EditText intervalv;
     private EditText endd;
+    RadioGroup radiogrp;
+    RadioButton radiobutton;
+
     private int MY_PERMISSIONS_REQUEST_WRITE_CALENDAR=0;
     boolean permission_granted=false;
     int startHour=10, startMinut=0;
@@ -70,7 +75,7 @@ public class popup extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int width=dm.widthPixels;
         int height = dm.heightPixels;
-        getWindow().setLayout((int)(width*0.8),(int)(height*0.8));
+        getWindow().setLayout((int)(width*0.9),(int)(height*0.9));
         mAuth=FirebaseAuth.getInstance();
         namev= findViewById(R.id.name);
         descv = findViewById(R.id.desc);
@@ -78,7 +83,8 @@ public class popup extends AppCompatActivity {
         intervalv = findViewById(R.id.interval);
         endd=findViewById(R.id.enddate);
         add=findViewById(R.id.add);
-        
+        radiogrp=findViewById(R.id.radioGroup);
+
         user=mAuth.getCurrentUser();
         final String uid=user.getUid().toString();
         final String email=user.getEmail().toString();
@@ -128,6 +134,22 @@ public class popup extends AppCompatActivity {
                 if(permission_granted) {
                     reminder(email,date,endda,name,desc,int_interval);
                 }
+
+
+                int radioId=radiogrp.getCheckedRadioButtonId();
+                int radionum=1;
+                switch (radioId){
+                    case R.id.day:
+                        radionum=1;
+                        break;
+                    case R.id.month:
+                        radionum=2;
+                        break;
+                    case R.id.year:
+                        radionum=3;
+                        break;
+                }
+
                 String eveid=Long.toString(eventID);
                 HashMap<String,Object> map = new HashMap<>();
                 map.put("name",name);
