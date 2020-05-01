@@ -124,18 +124,13 @@ public class popup extends AppCompatActivity {
                  String endda=endd.getText().toString();
                  String interval=intervalv.getText().toString();
 
-                 int int_interval;
+                /* int int_interval;
                 try{
                     int_interval=Integer.parseInt(interval);
                 }
                 catch(NumberFormatException e){
                     int_interval=0;
-                }
-                if(permission_granted) {
-                    reminder(email,date,endda,name,desc,int_interval);
-                }
-
-
+                }*/
                 int radioId=radiogrp.getCheckedRadioButtonId();
                 int radionum=1;
                 switch (radioId){
@@ -149,6 +144,12 @@ public class popup extends AppCompatActivity {
                         radionum=3;
                         break;
                 }
+                if(permission_granted) {
+                    reminder(email,date,endda,name,desc,interval,radionum);
+                }
+
+
+
 
                 String eveid=Long.toString(eventID);
                 HashMap<String,Object> map = new HashMap<>();
@@ -218,16 +219,53 @@ public class popup extends AppCompatActivity {
         }
         return calID;
     }
-    
+    public String addzero(int n){
+        String str;
+        if(n<10){
+            str="0"+n;
+        }
+        else{
+            str=Integer.toString(n);
+        }
+        return str;
+    }
 
-    public void reminder(String mailid,String stdate,String endate,String title,String desc,int interval){
+    public void reminder(String mailid,String stdate,String endate,String title,String desc,String interval,int radio){
+        String rrule="";
         long calid=userid(mailid);
         int[] sta = strtodmy(stdate);
-        int[] end = strtodmy(endate);
         Calendar beginTime = Calendar.getInstance();
-        beginTime.set(sta[2],sta[1],sta[0], startHour, startMinut);
+        beginTime.set(sta[2],(sta[1]-1),sta[0], startHour, startMinut);
         long startMillis = beginTime.getTimeInMillis();
-        String rrule="FREQ=MONTHLY;BYMONTHDAY=5;INTERVAL=1";
+        if(endate.length()>0){
+            int[] end = strtodmy(endate);
+            switch(radio){
+                case 1:
+                    //int eday=end[0]+1
+                    rrule="FREQ=DAILY;INTERVAL="+interval+";UNTIL="+addzero(end[2])+addzero(end[1])+addzero(end[0]);
+                    break;
+                case 2:
+                    rrule="FREQ=MONTHLY;BYMONTHDAY="+addzero(sta[0])+";INTERVAL="+interval+";UNTIL="+addzero(end[2])+addzero(end[1])+addzero(end[0]);
+                    break;
+                case 3:
+                    rrule="FREQ=YEARLY;BYMONTH="+addzero(sta[1])+";BYMONTHDAY="+addzero(sta[0])+";INTERVAL="+interval+";UNTIL="+addzero(end[2])+addzero(end[1])+addzero(end[0]);
+
+            }
+        }
+        else{
+            switch(radio){
+                case 1:
+                    rrule="FREQ=DAILY;INTERVAL="+interval;
+                    break;
+                case 2:
+                    rrule="FREQ=MONTHLY;BYMONTHDAY="+addzero(sta[0])+";INTERVAL="+interval;
+                    break;
+                case 3:
+                    rrule="FREQ=YEARLY;BYMONTH="+addzero(sta[1])+";BYMONTHDAY="+addzero(sta[0])+";INTERVAL="+interval;
+
+            }
+        }
+
         ContentValues eventValues = new ContentValues();
         eventValues.put(CalendarContract.Events.CALENDAR_ID, calid);
         eventValues.put(CalendarContract.Events.TITLE, title);
