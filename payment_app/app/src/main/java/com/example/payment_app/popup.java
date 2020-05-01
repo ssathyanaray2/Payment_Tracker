@@ -117,7 +117,7 @@ public class popup extends AppCompatActivity {
                  String date= datev.getText().toString();
                  String endda=endd.getText().toString();
                  String interval=intervalv.getText().toString();
-                 String eveid=Long.toString(eventID);
+
                  int int_interval;
                 try{
                     int_interval=Integer.parseInt(interval);
@@ -125,6 +125,10 @@ public class popup extends AppCompatActivity {
                 catch(NumberFormatException e){
                     int_interval=0;
                 }
+                if(permission_granted) {
+                    reminder(email,date,endda,name,desc,int_interval);
+                }
+                String eveid=Long.toString(eventID);
                 HashMap<String,Object> map = new HashMap<>();
                 map.put("name",name);
                 map.put("description",desc);
@@ -133,9 +137,7 @@ public class popup extends AppCompatActivity {
                 map.put("eventid",eveid);
                 map.put("End date",endda);
                 FirebaseDatabase.getInstance().getReference().child(uid).push().setValue(map);
-                if(permission_granted) {
-                    reminder(email,date,endda,name,desc,int_interval);
-                }
+
                 startActivity(new Intent(popup.this, reminder.class));
                 
             }
@@ -180,17 +182,6 @@ public class popup extends AppCompatActivity {
         return dmy;
     }
 
-    /*private void add_reminder(){
-        String TAG="add_rem",u="add_reminder called",v="not called";
-        if(permission_granted) {
-                    reminder(startYear=2020,startMonth=4,startDay=5, startHour=10, startMinut=0);
-                    Log.i(TAG,u);
-                }
-        else{
-            Log.i(TAG,v);
-        }
-    }*/
-
     public long userid(String mailid){
         long calID = 0;
         Cursor cur = null;
@@ -229,7 +220,6 @@ public class popup extends AppCompatActivity {
         ContentResolver cr = getContentResolver();
         Uri eventUri = cr.insert(CalendarContract.Events.CONTENT_URI, eventValues);
         eventID = Long.parseLong(eventUri.getLastPathSegment());
-
         ContentResolver remcr = getContentResolver();
         ContentValues remindervalues = new ContentValues();
         remindervalues.put(CalendarContract.Reminders.MINUTES, 5);
