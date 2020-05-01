@@ -70,7 +70,7 @@ public class popup extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int width=dm.widthPixels;
         int height = dm.heightPixels;
-        getWindow().setLayout((int)(width*0.8),(int)(height*0.8));
+        getWindow().setLayout((int)(width*0.9),(int)(height*0.9));
         mAuth=FirebaseAuth.getInstance();
         namev= findViewById(R.id.name);
         descv = findViewById(R.id.desc);
@@ -78,7 +78,7 @@ public class popup extends AppCompatActivity {
         intervalv = findViewById(R.id.interval);
         endd=findViewById(R.id.enddate);
         add=findViewById(R.id.add);
-        
+
         user=mAuth.getCurrentUser();
         final String uid=user.getUid().toString();
         final String email=user.getEmail().toString();
