@@ -71,11 +71,6 @@ public class popup extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_popup);
-        DisplayMetrics dm=new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-        int width=dm.widthPixels;
-        int height = dm.heightPixels;
-        getWindow().setLayout((int)(width*0.9),(int)(height*0.9));
         mAuth=FirebaseAuth.getInstance();
         namev= findViewById(R.id.name);
         descv = findViewById(R.id.desc);
