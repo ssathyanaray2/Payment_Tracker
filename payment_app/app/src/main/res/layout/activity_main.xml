@@ -4,38 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/img4"
+    android:background="@drawable/background"
     tools:context=".MainActivity">
 
 
-    <TextView
-        android:id="@+id/welcom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="125dp"
-        android:padding="10dp"
-        android:paddingLeft="25dp"
-        android:text="Welcome"
-        android:textAlignment="gravity"
-        android:textAllCaps="false"
-        android:textColor="@color/common_google_signin_btn_text_dark_default"
-        android:textIsSelectable="false"
-        android:textSize="36sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.457"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <EditText
         android:id="@+id/Email"
-        android:layout_width="370dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="75dp"
+        android:layout_width="319dp"
+        android:layout_height="53dp"
+        android:background="@drawable/email"
         android:ems="10"
         android:fontFamily="casual"
-        android:hint="@string/Email"
         android:includeFontPadding="true"
         android:inputType="textEmailAddress"
         android:padding="10dp"
@@ -44,18 +23,21 @@
         android:textColorLink="#F5D2DF"
         android:textSize="24sp"
         android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcom" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.371" />
+
 
     <EditText
         android:id="@+id/Password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_width="317dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/pass"
         android:ems="10"
         android:fontFamily="casual"
-        android:hint="@string/Password"
         android:inputType="textPassword"
         android:padding="10dp"
         android:paddingStart="@android:dimen/notification_large_icon_height"
@@ -64,18 +46,19 @@
         android:textSize="24sp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Email" />
 
     <Button
         android:id="@+id/Submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="@string/signup"
+        android:layout_width="151dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/signup"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.176"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Password" />
 
@@ -83,10 +66,10 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="188dp"
+        android:background="@drawable/already"
         android:fontFamily="casual"
-        android:text="@string/alreday"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#FFFC38"
         android:textSize="18sp"
@@ -96,12 +79,12 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="50dp"
+        android:layout_width="67dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="188dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/login"
         android:onClick="next"
-        android:text="@string/Login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Submit" />
 
