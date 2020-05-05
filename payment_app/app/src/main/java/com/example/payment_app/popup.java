@@ -285,5 +285,9 @@ public class popup extends AppCompatActivity {
         Toast.makeText(popup.this, "reminder has been set", Toast.LENGTH_LONG).show();
 
     }
+    public void addphoto(View view){
+        Intent intent = new Intent(this, photo.class);
+        startActivity(intent);
+    }
 
 }
