@@ -39,10 +39,12 @@ public class photo extends AppCompatActivity {
                     }
                     else{
                         openCamera();
+                        image.setImageURI(imguri);
                     }
                 }
                 else{
                     openCamera();
+                    image.setImageURI(imguri);
                 }
             }
         });

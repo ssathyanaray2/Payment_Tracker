@@ -84,7 +84,7 @@ public class reminder extends AppCompatActivity {
             public void onDataChange(DataSnapshot datasnapshot) {
                 for(DataSnapshot ds: datasnapshot.getChildren()) {
                     fuser = ds.getValue(adapter.class);
-                    list.add("\nName :"+fuser.getName().toString()+"\n"+"For :"+fuser.getDescription().toString()+"\n"+"Date :"+fuser.getDate()+"\n".toString());
+                    list.add("\n"+"  "+"Name :"+fuser.getName().toString()+"\n"+"  "+"For :"+fuser.getDescription().toString()+"\n"+"  "+"Date :"+fuser.getDate()+"  "+"\n".toString());
                 }
                 liv.setAdapter(aad);
                 liv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
