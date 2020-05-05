@@ -68,8 +68,6 @@ public class popup extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getSupportActionBar().hide();
         setContentView(R.layout.activity_popup);
         mAuth=FirebaseAuth.getInstance();
         namev= findViewById(R.id.name);

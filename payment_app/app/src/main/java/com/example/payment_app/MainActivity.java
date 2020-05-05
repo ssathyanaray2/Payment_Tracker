@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText EmailField;
     private EditText Password;
+    private EditText ConfPass;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         EmailField=findViewById(R.id.Email);
         Password= findViewById(R.id.Password);
+        ConfPass=findViewById(R.id.confpwd);
         Button signup= findViewById(R.id.Submit);
 
         signup.setOnClickListener(new View.OnClickListener(){
@@ -68,8 +70,13 @@ public class MainActivity extends AppCompatActivity {
     private void startSignUp(){
         String email=EmailField.getText().toString().trim();
         String pass=Password.getText().toString().trim();
+        String cpass=ConfPass.getText().toString().trim();
         if(TextUtils.isEmpty(email)|| TextUtils.isEmpty(pass)){
             Toast.makeText(MainActivity.this, "Fields are empty", Toast.LENGTH_LONG).show();
+        }
+        else if(!pass.equals(cpass)){
+            Toast.makeText(MainActivity.this, "Passwords do not match", Toast.LENGTH_LONG).show();
+
         }
         else {
             mAuth.createUserWithEmailAndPassword(email, pass)
