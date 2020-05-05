@@ -4,17 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/img4"
+    android:background="@drawable/screen1"
     tools:context=".popup">
 
     <EditText
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/field"
         android:ems="10"
         android:hint="Reminder Name"
+        android:includeFontPadding="true"
         android:inputType="text"
+        android:paddingStart="20dp"
+        android:paddingEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,9 +28,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
+        android:background="@drawable/field"
         android:ems="10"
-        android:hint="Start Date"
+        android:hint="Start Date(dd/mm/yyyy)"
+        android:includeFontPadding="true"
         android:inputType="date"
+        android:paddingStart="20dp"
+        android:paddingEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/desc" />
@@ -36,9 +44,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
+        android:background="@drawable/field"
         android:ems="10"
         android:hint="Description"
+        android:includeFontPadding="true"
         android:inputType="text"
+        android:paddingStart="20dp"
+        android:paddingEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name" />
@@ -56,22 +68,28 @@
 
         <RadioButton
             android:id="@+id/day"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="91dp"
+            android:layout_height="39dp"
             android:layout_weight="1"
-            android:text="Days" />
+            android:text="  Days"
+            android:textColor="#03DAC6"
+            android:buttonTint="@color/my_color"/>
 
         <RadioButton
             android:id="@+id/month"
             android:layout_width="102dp"
-            android:layout_height="wrap_content"
-            android:text="Months" />
+            android:layout_height="39dp"
+            android:text="  Months"
+            android:textColor="#03DAC6"
+            android:buttonTint="@color/my_color"/>
 
         <RadioButton
             android:id="@+id/year"
             android:layout_width="84dp"
             android:layout_height="match_parent"
-            android:text="Years" />
+            android:text="  Years"
+            android:textColor="#03DAC6"
+            android:buttonTint="@color/my_color"/>
 
     </RadioGroup>
 
@@ -79,9 +97,10 @@
         android:id="@+id/select"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="64dp"
         android:layout_marginTop="25dp"
-        android:text="Select Interval :"
+        android:text="Select repeat interval :"
+        android:textColor="#03DAC6"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/date" />
@@ -91,9 +110,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
+        android:background="@drawable/field"
         android:ems="10"
         android:hint="Number of intervals"
         android:inputType="number"
+        android:paddingStart="20dp"
+        android:paddingEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
@@ -103,9 +125,12 @@
         android:layout_width="wrap_content"
         android:layout_height="45dp"
         android:layout_marginTop="25dp"
+        android:background="@drawable/field"
         android:ems="10"
-        android:hint="End date"
+        android:hint="End date(dd/mm/yyyy)"
         android:inputType="date"
+        android:paddingStart="20dp"
+        android:paddingEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/interval" />
@@ -114,12 +139,33 @@
         android:id="@+id/add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:hint="Add"
-        android:text="ADD"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/submit1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="25dp"
+        android:text="Take photo :"
+        android:textColor="#03DAC6"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enddate" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="30dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="188dp"
+        android:background="@drawable/camera1"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/enddate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
