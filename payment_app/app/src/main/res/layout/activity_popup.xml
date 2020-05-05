@@ -99,7 +99,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginTop="25dp"
-        android:text="Select Interval :"
         android:text="Select repeat interval :"
         android:textColor="#03DAC6"
         android:textSize="20sp"
@@ -166,6 +165,7 @@
         android:layout_marginTop="25dp"
         android:layout_marginEnd="188dp"
         android:background="@drawable/camera1"
+        android:onClick="addphoto"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/enddate" />
 
