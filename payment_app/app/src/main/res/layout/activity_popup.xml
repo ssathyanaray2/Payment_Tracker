@@ -8,7 +8,7 @@
     tools:context=".popup">
 
     <EditText
-        android:id="@+id/desc"
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginTop="50dp"
@@ -24,6 +24,23 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
+        android:id="@+id/desc"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/field"
+        android:ems="10"
+        android:hint="Description"
+        android:includeFontPadding="true"
+        android:inputType="text"
+        android:paddingStart="20dp"
+        android:paddingEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
+
+    <EditText
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,22 +50,6 @@
         android:hint="Start Date(dd/mm/yyyy)"
         android:includeFontPadding="true"
         android:inputType="date"
-        android:paddingStart="20dp"
-        android:paddingEnd="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/desc" />
-
-    <EditText
-        android:id="@+id/desc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/field"
-        android:ems="10"
-        android:hint="Description"
-        android:includeFontPadding="true"
-        android:inputType="text"
         android:paddingStart="20dp"
         android:paddingEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -97,7 +98,7 @@
         android:id="@+id/select"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
+        android:layout_marginStart="80dp"
         android:layout_marginTop="25dp"
         android:text="Select repeat interval :"
         android:textColor="#03DAC6"

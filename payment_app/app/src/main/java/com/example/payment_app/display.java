@@ -47,7 +47,7 @@ public class display extends AppCompatActivity {
                 str="Description: "+detail.getDescription()+"\n"+"Start date: "+detail.getDate()+"\n"+"End Date: "+detail.getEdate()+"\n"+repeat+"\n";
                 String name=detail.getName();
                 TextView title=findViewById(R.id.title);
-                TextView t=findViewById(R.id.desc);
+                TextView t=findViewById(R.id.details);
                 title.setText(name);
                 t.setText(str);
             }

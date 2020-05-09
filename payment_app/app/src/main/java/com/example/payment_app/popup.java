@@ -59,7 +59,7 @@ public class popup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_popup);
         mAuth=FirebaseAuth.getInstance();
-        namev= findViewById(R.id.desc);
+        namev= findViewById(R.id.name);
         descv = findViewById(R.id.desc);
         datev = findViewById(R.id.date);
         intervalv = findViewById(R.id.interval);
