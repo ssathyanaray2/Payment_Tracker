@@ -10,8 +10,8 @@
 
     <EditText
         android:id="@+id/Email"
-        android:layout_width="314dp"
-        android:layout_height="51dp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginTop="280dp"
         android:background="@drawable/email2"
         android:ems="10"
@@ -23,7 +23,7 @@
         android:paddingEnd="30dp"
         android:singleLine="true"
         android:textColorLink="#F5D2DF"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
@@ -32,8 +32,8 @@
 
     <EditText
         android:id="@+id/Password"
-        android:layout_width="314dp"
-        android:layout_height="51dp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginTop="35dp"
         android:background="@drawable/pswd2"
         android:ems="10"
@@ -44,7 +44,7 @@
         android:paddingStart="55dp"
         android:password="true"
         android:singleLine="true"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,8 +52,8 @@
 
     <Button
         android:id="@+id/Submit"
-        android:layout_width="314dp"
-        android:layout_height="51dp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginTop="50dp"
         android:background="@drawable/login"
         android:visibility="visible"

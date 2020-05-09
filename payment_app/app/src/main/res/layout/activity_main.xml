@@ -10,8 +10,8 @@
 
     <EditText
         android:id="@+id/Email"
-        android:layout_width="314dp"
-        android:layout_height="51dp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
         android:background="@drawable/email1"
         android:ems="10"
         android:fontFamily="sans-serif"
@@ -23,7 +23,7 @@
         android:paddingEnd="30dp"
         android:singleLine="true"
         android:textColorLink="#F5D2DF"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,8 +34,8 @@
 
     <EditText
         android:id="@+id/Password"
-        android:layout_width="314dp"
-        android:layout_height="51dp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginTop="35dp"
         android:background="@drawable/pswd1"
         android:ems="10"
@@ -47,7 +47,7 @@
         android:paddingEnd="30dp"
         android:password="true"
         android:singleLine="true"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.479"
@@ -56,8 +56,8 @@
 
     <Button
         android:id="@+id/Submit"
-        android:layout_width="314dp"
-        android:layout_height="51dp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginTop="50dp"
         android:background="@drawable/signup"
         android:visibility="visible"
@@ -70,17 +70,17 @@
         android:id="@+id/button"
         android:layout_width="232dp"
         android:layout_height="24dp"
-        android:layout_marginTop="75dp"
-        android:layout_marginEnd="120dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="65dp"
         android:background="@drawable/already"
         android:onClick="next"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Submit" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/confpwd"
-        android:layout_width="314dp"
-        android:layout_height="51dp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginTop="35dp"
         android:background="@drawable/pswd1"
         android:ems="10"
@@ -89,7 +89,7 @@
         android:inputType="textPassword"
         android:paddingStart="50dp"
         android:paddingEnd="30dp"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
