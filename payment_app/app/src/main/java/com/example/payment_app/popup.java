@@ -13,30 +13,19 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.CalendarContract;
-import android.text.InputType;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.RadioButton;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
 
 import java.util.Calendar;
-import java.util.TimeZone;
 
 public class popup extends AppCompatActivity {
 
@@ -70,7 +59,7 @@ public class popup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_popup);
         mAuth=FirebaseAuth.getInstance();
-        namev= findViewById(R.id.name);
+        namev= findViewById(R.id.desc);
         descv = findViewById(R.id.desc);
         datev = findViewById(R.id.date);
         intervalv = findViewById(R.id.interval);
@@ -126,15 +115,19 @@ public class popup extends AppCompatActivity {
                 }*/
                 int radioId=radiogrp.getCheckedRadioButtonId();
                 int radionum=1;
+                String dmy="No repetition";
                 switch (radioId){
                     case R.id.day:
                         radionum=1;
+                        dmy="days";
                         break;
                     case R.id.month:
                         radionum=2;
+                        dmy="months";
                         break;
                     case R.id.year:
                         radionum=3;
+                        dmy="years";
                         break;
                 }
                 if(permission_granted) {
@@ -142,16 +135,16 @@ public class popup extends AppCompatActivity {
                 }
 
 
-
-
                 String eveid=Long.toString(eventID);
+                //String dmy=Integer.toString(radionum);
                 HashMap<String,Object> map = new HashMap<>();
                 map.put("name",name);
                 map.put("description",desc);
                 map.put("date",date);
                 map.put("period",interval);
                 map.put("eventid",eveid);
-                map.put("End date",endda);
+                map.put("edate",endda);
+                map.put("dmy",dmy);
                 FirebaseDatabase.getInstance().getReference().child(uid).push().setValue(map);
 
                 startActivity(new Intent(popup.this, reminder.class));

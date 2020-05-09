@@ -59,7 +59,7 @@ public class reminder extends AppCompatActivity {
         setContentView(R.layout.activity_reminder);
         Button signout=findViewById(R.id.button2);
         mAuth=FirebaseAuth.getInstance();
-        liv=(ListView)findViewById(R.id.listv);
+        liv=findViewById(R.id.listv);
         list=new ArrayList<>();
         fuser=new adapter();
         aad=new ArrayAdapter<String>(this,R.layout.reminder_info,R.id.txtviw,list);
@@ -77,19 +77,28 @@ public class reminder extends AppCompatActivity {
     private void lineup() {
         database = FirebaseDatabase.getInstance();
         user=mAuth.getCurrentUser();
-         String uid=user.getUid().toString();
+        String uid=user.getUid().toString();
         mRef = database.getReference().child(uid);
 
         mRef.addValueEventListener(new ValueEventListener() {
             public void onDataChange(DataSnapshot datasnapshot) {
+                long l= datasnapshot.getChildrenCount();
+                int n=(int)l,i=0;
+                final String [] temp=new String[n];
                 for(DataSnapshot ds: datasnapshot.getChildren()) {
                     fuser = ds.getValue(adapter.class);
+                    String str=ds.getKey().toString();
+                    temp[i]=str;
+                    i+=1;
                     list.add("\n"+"  "+"Name :"+fuser.getName().toString()+"\n"+"  "+"For :"+fuser.getDescription().toString()+"\n"+"  "+"Date :"+fuser.getDate()+"  "+"\n".toString());
                 }
                 liv.setAdapter(aad);
                 liv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
                     public void onItemClick(AdapterView<?> parent,View view,int position,long id){
-                        Toast.makeText(reminder.this,"U clicked:"+position,Toast.LENGTH_LONG).show();
+                        //Toast.makeText(reminder.this,"U clicked:"+position,Toast.LENGTH_LONG).show();
+                        Intent intent=new Intent(reminder.this,display.class);
+                        intent.putExtra("key", temp[position]);
+                        startActivity(intent);
                     }
                 });
 

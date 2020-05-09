@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".photo"></activity>
+        <activity android:name=".display"></activity>
+        <activity android:name=".photo" />
         <activity android:name=".popup" />
         <activity android:name=".reminder" />
         <activity android:name=".MainActivity">

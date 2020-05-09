@@ -5,21 +5,24 @@ public class adapter {
     private String description;
     private String date;
     private String period;
-
+    private String edate;
+    private String eventid;
+    private String dmy;
     public adapter(){};
 
 
 
-    public adapter(String name, String description, String date, String period) {
+    public adapter(String name, String description, String date, String period,String edate,String eventid,String dmy) {
         this.name = name;
         this.description=description;
         this.date=date;
         this.period=period;
+        this.edate=edate;
+        this.eventid=eventid;
+        this.dmy=dmy;
     }
 
-    public void setPeriod(String period) {
-        this.period = period;
-    }
+
 
     public String getPeriod() {
         return period;
@@ -41,6 +44,22 @@ public class adapter {
         this.name = name;
     }
 
+    public String getEdate() {
+        return edate;
+    }
+
+    public String getEventid() {
+        return eventid;
+    }
+
+    public String getDmy() {
+        return dmy;
+    }
+
+    public void setPeriod(String period) {
+        this.period = period;
+    }
+
     public void setDescription(String description) {
         this.description = description;
     }
@@ -48,4 +67,19 @@ public class adapter {
     public void setDate(String date) {
         this.date = date;
     }
+
+    public void setEdate(String edate) {
+        this.edate = edate;
+    }
+
+    public void setEventid(String eventid) {
+        this.eventid = eventid;
+    }
+
+    public void setDmy(String dmy) {
+        this.dmy = dmy;
+    }
+
+
+
 }
