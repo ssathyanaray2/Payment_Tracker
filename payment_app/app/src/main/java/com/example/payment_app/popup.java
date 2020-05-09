@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import android.os.Build.VERSION;
+import android.os.Build;
 import android.Manifest;
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -21,6 +23,15 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import android.content.ContentValues;
+import android.provider.MediaStore;
+import android.graphics.Bitmap;
+import java.io.File;
+import java.io.FileOutputStream;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
+import java.io.ByteArrayOutputStream;
+
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -36,6 +47,10 @@ public class popup extends AppCompatActivity {
     private EditText endd;
     RadioGroup radiogrp;
     RadioButton radiobutton;
+    private static final int Permission_code=1000;
+    private static final int Image_cap_code=1001;
+    Bitmap bitmap;
+    String imageString="a";
 
     private int MY_PERMISSIONS_REQUEST_WRITE_CALENDAR=0;
     boolean permission_granted=false;
@@ -145,8 +160,8 @@ public class popup extends AppCompatActivity {
                 map.put("eventid",eveid);
                 map.put("edate",endda);
                 map.put("dmy",dmy);
+                map.put("img",imageString);
                 FirebaseDatabase.getInstance().getReference().child(uid).push().setValue(map);
-
                 startActivity(new Intent(popup.this, reminder.class));
                 
             }
@@ -277,8 +292,36 @@ public class popup extends AppCompatActivity {
 
     }
     public void addphoto(View view){
-        Intent intent = new Intent(this, photo.class);
-        startActivity(intent);
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+            if(checkSelfPermission(Manifest.permission.CAMERA)== PackageManager.PERMISSION_DENIED || checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_DENIED ){
+                String[] permission={Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE};
+                requestPermissions(permission,Permission_code);
+            }
+            else{
+                openCamera();
+            }
+        }
+        else {
+            openCamera();
+        }
+    }
+
+    private void openCamera(){
+        Intent cameraIntent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent,0);
+    }
+
+
+    protected void onActivityResult(int requestcode,int resultcode,Intent data){
+        super.onActivityResult(requestcode,resultcode,data);
+
+        bitmap=(Bitmap)data.getExtras().get("data");
+        //image.setImageBitmap(bitmap);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+        byte[] imageBytes = byteArrayOutputStream.toByteArray();
+        imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+
     }
 
 }

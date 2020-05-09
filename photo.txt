@@ -24,8 +24,9 @@ public class photo extends AppCompatActivity {
 
     private static final int Permission_code=1000;
     private static final int Image_cap_code=1001;
-    Button captureimg;
+    Button storeimg;
     ImageView image;
+    Bitmap bitmap;
 
     Uri imguri;
     @Override
@@ -33,10 +34,8 @@ public class photo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo);
         image=findViewById(R.id.imageView);
-        captureimg=findViewById(R.id.Capture);
+        storeimg=findViewById(R.id.Capture);
 
-        captureimg.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
                 if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
                     if(checkSelfPermission(Manifest.permission.CAMERA)== PackageManager.PERMISSION_DENIED || checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_DENIED ){
                         String[] permission={Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -46,9 +45,13 @@ public class photo extends AppCompatActivity {
                         openCamera();
                     }
                 }
-                else{
+                else {
                     openCamera();
                 }
+
+        storeimg.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+
             }
         });
     }
@@ -63,13 +66,17 @@ public class photo extends AppCompatActivity {
     protected void onActivityResult(int requestcode,int resultcode,Intent data){
        super.onActivityResult(requestcode,resultcode,data);
 
-       Bitmap bitmap=(Bitmap)data.getExtras().get("data");
+       bitmap=(Bitmap)data.getExtras().get("data");
         image.setImageBitmap(bitmap);
     }
+
+
 
 }
 
 /*
+
+
  ContentValues values=new ContentValues();
         values.put(MediaStore.Images.Media.TITLE,"New Picture");
         values.put(MediaStore.Images.Media.DESCRIPTION,"From the Camera");
@@ -79,3 +86,56 @@ public class photo extends AppCompatActivity {
 
 FileOutputStream out = new FileOutputStream("C:/Users/Spoorthi S/Desktop/bmpimg");
         bitmap.compress(Bitmap.CompressFormat.PNG, 90, out);*/
+
+
+
+
+
+
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".photo">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="306dp"
+        android:layout_height="433dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.107"
+        app:srcCompat="@android:drawable/ic_menu_gallery" />
+
+    <Button
+        android:id="@+id/Capture"
+        android:layout_width="116dp"
+        android:layout_height="53dp"
+        android:text="capture"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
