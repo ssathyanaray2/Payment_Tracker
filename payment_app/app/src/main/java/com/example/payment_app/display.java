@@ -58,10 +58,13 @@ public class display extends AppCompatActivity {
                 String name=detail.getName();
                 TextView title=findViewById(R.id.title);
                 TextView t=findViewById(R.id.details);
-                img=findViewById(R.id.imageView2);
-                byte[] decodedString = Base64.decode(imgstring, Base64.DEFAULT);
-                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-                img.setImageBitmap(decodedByte);
+
+                if (imgstring!="noimg"){
+                    img=findViewById(R.id.imageView2);
+                    byte[] decodedString = Base64.decode(imgstring, Base64.DEFAULT);
+                    Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                    img.setImageBitmap(decodedByte);
+                }
                 title.setText(name);
                 t.setText(str);
             }
