@@ -5,6 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ImageView;
+import android.graphics.Bitmap;
+import java.io.File;
+import java.io.FileOutputStream;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
+import java.io.ByteArrayOutputStream;
+
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -20,6 +28,7 @@ public class display extends AppCompatActivity {
     DatabaseReference mRef;
     FirebaseUser user;
     adapter detail;
+    ImageView img;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +46,7 @@ public class display extends AppCompatActivity {
                 String repeat;
                 String s=detail.getDmy();
                 String str;
+                String imgstring=detail.getImg();
                 if("No repetition".equals(s)) {
                     repeat = s;
                     //str="Name: "+detail.getName()+"\n"+"Description: "+detail.getDescription()+"\n"+"Start date: "+detail.getDate()+"\n"+"End Date: "+detail.getEdate()+"\n";
@@ -48,6 +58,10 @@ public class display extends AppCompatActivity {
                 String name=detail.getName();
                 TextView title=findViewById(R.id.title);
                 TextView t=findViewById(R.id.details);
+                img=findViewById(R.id.imageView2);
+                byte[] decodedString = Base64.decode(imgstring, Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                img.setImageBitmap(decodedByte);
                 title.setText(name);
                 t.setText(str);
             }

@@ -8,11 +8,12 @@ public class adapter {
     private String edate;
     private String eventid;
     private String dmy;
+    private String img;
     public adapter(){};
 
 
 
-    public adapter(String name, String description, String date, String period,String edate,String eventid,String dmy) {
+    public adapter(String name, String description, String date, String period,String edate,String eventid,String dmy,String img) {
         this.name = name;
         this.description=description;
         this.date=date;
@@ -20,9 +21,16 @@ public class adapter {
         this.edate=edate;
         this.eventid=eventid;
         this.dmy=dmy;
+        this.img=img;
     }
 
+    public String getImg() {
+        return img;
+    }
 
+    public void setImg(String img) {
+        this.img = img;
+    }
 
     public String getPeriod() {
         return period;
