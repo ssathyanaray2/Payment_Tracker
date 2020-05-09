@@ -31,8 +31,8 @@
 
     <ListView
         android:id="@+id/listv"
-        android:layout_width="377dp"
-        android:layout_height="604dp"
+        android:layout_width="347dp"
+        android:layout_height="596dp"
         android:layout_marginTop="60dp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"

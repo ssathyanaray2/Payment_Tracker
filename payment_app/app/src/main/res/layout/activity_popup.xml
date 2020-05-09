@@ -10,8 +10,8 @@
     <EditText
         android:id="@+id/name"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginTop="50dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/field"
         android:ems="10"
         android:hint="Reminder Name"
@@ -24,10 +24,26 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
+        android:id="@+id/amount"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/field"
+        android:ems="10"
+        android:hint="Amount"
+        android:includeFontPadding="true"
+        android:inputType="text"
+        android:paddingStart="20dp"
+        android:paddingEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enddate" />
+
+    <EditText
         android:id="@+id/desc"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginTop="25dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/field"
         android:ems="10"
         android:hint="Description"
@@ -43,8 +59,8 @@
     <EditText
         android:id="@+id/date"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/field"
         android:ems="10"
         android:hint="Start Date(dd/mm/yyyy)"
@@ -60,7 +76,7 @@
         android:id="@+id/radioGroup"
         android:layout_width="274dp"
         android:layout_height="39dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="5dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
@@ -72,25 +88,25 @@
             android:layout_width="91dp"
             android:layout_height="39dp"
             android:layout_weight="1"
+            android:buttonTint="@color/my_color"
             android:text="  Days"
-            android:textColor="#03DAC6"
-            android:buttonTint="@color/my_color"/>
+            android:textColor="#03DAC6" />
 
         <RadioButton
             android:id="@+id/month"
             android:layout_width="102dp"
             android:layout_height="39dp"
+            android:buttonTint="@color/my_color"
             android:text="  Months"
-            android:textColor="#03DAC6"
-            android:buttonTint="@color/my_color"/>
+            android:textColor="#03DAC6" />
 
         <RadioButton
             android:id="@+id/year"
             android:layout_width="84dp"
             android:layout_height="match_parent"
+            android:buttonTint="@color/my_color"
             android:text="  Years"
-            android:textColor="#03DAC6"
-            android:buttonTint="@color/my_color"/>
+            android:textColor="#03DAC6" />
 
     </RadioGroup>
 
@@ -98,19 +114,19 @@
         android:id="@+id/select"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="20dp"
         android:text="Select repeat interval :"
         android:textColor="#03DAC6"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/date" />
 
     <EditText
         android:id="@+id/interval"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/field"
         android:ems="10"
         android:hint="Number of intervals"
@@ -124,8 +140,8 @@
     <EditText
         android:id="@+id/enddate"
         android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_marginTop="25dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/field"
         android:ems="10"
         android:hint="End date(dd/mm/yyyy)"
@@ -139,11 +155,11 @@
     <Button
         android:id="@+id/add"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/submit1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -152,22 +168,51 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="10dp"
         android:text="Take photo :"
         android:textColor="#03DAC6"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enddate" />
+        app:layout_constraintTop_toBottomOf="@+id/rdgrp" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="30dp"
         android:layout_height="25dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="188dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="140dp"
         android:background="@drawable/camera1"
         android:onClick="addphoto"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enddate" />
+        app:layout_constraintTop_toBottomOf="@+id/rdgrp" />
+
+    <RadioGroup
+        android:id="@+id/rdgrp"
+        android:layout_width="290dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/amount">
+
+        <RadioButton
+            android:id="@+id/dr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:buttonTint="@color/my_color"
+            android:text="Debit"
+            android:textColor="#03DAC6" />
+
+        <RadioButton
+            android:id="@+id/cr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:buttonTint="@color/my_color"
+            android:text="Credit"
+            android:textColor="#03DAC6" />/>
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
