@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Button;
 import android.widget.Toast;
 import android.widget.ImageView;
 import android.graphics.Bitmap;
@@ -14,6 +15,11 @@ import android.graphics.BitmapFactory;
 import android.util.Base64;
 import java.io.ByteArrayOutputStream;
 import android.content.Intent;
+import android.content.ContentResolver;
+import android.net.Uri;
+import android.content.ContentUris;
+import android.provider.CalendarContract.Events;
+import android.provider.CalendarContract;
 
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,6 +37,7 @@ public class display extends AppCompatActivity {
     FirebaseUser user;
     adapter detail;
     ImageView img;
+    Button btndel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +48,29 @@ public class display extends AppCompatActivity {
         user=mAuth.getCurrentUser();
         String uid=user.getUid().toString();
         mRef = database.getReference().child(uid).child(key);
+        btndel=findViewById(R.id.delete);
+
+        btndel.setOnClickListener(new View.OnClickListener(){
+                                      @Override
+                                      public void onClick(View v) {
+                                          mRef.addValueEventListener(new ValueEventListener() {
+                                              @Override
+                                              public void onDataChange(DataSnapshot datasnapshot) {
+                                                  detail = datasnapshot.getValue(adapter.class);
+                                                  long eveid = detail.getEventid();
+                                                  deleteeve(eveid);
+                                              }
+                                              @Override
+                                              public void onCancelled(DatabaseError databaseError) {
+                                                  Toast.makeText(display.this, "Event cannot be deleted", Toast.LENGTH_LONG).show();
+
+                                              }
+                                          });
+                                      }
+        });
+
+
+
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot datasnapshot) {
@@ -95,5 +125,14 @@ public class display extends AppCompatActivity {
     public void back(View view){
         Intent intent = new Intent(this, reminder.class);
         startActivity(intent);
+    }
+
+    public void deleteeve(long eveid){
+
+        ContentResolver cr = getContentResolver();
+        Uri deleteUri = null;
+        deleteUri = ContentUris.withAppendedId(Events.CONTENT_URI, eveid);
+        int rows = cr.delete(deleteUri, null, null);
+        Toast.makeText(display.this,"deleted",Toast.LENGTH_LONG).show();
     }
 }
