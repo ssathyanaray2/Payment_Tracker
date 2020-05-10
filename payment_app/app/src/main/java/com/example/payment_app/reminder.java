@@ -123,6 +123,7 @@ public class reminder extends AppCompatActivity {
     
 
 }
+
  /*String TAG="user";
         int a= getIntent().getIntExtra("uid",0);
         String u=Integer.toString(a);
@@ -130,6 +131,5 @@ public class reminder extends AppCompatActivity {
             Log.i(TAG,u);
         }
         TextView t=findViewById(R.id.user);
-        t.setText(u);
-*/
+        t.setText(u);*/
 
