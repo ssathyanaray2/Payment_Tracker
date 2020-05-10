@@ -3,6 +3,7 @@ package com.example.payment_app;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ImageView;
@@ -12,6 +13,7 @@ import java.io.FileOutputStream;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
 import java.io.ByteArrayOutputStream;
+import android.content.Intent;
 
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -69,12 +71,19 @@ public class display extends AppCompatActivity {
 
                 if (imgstring!="noimg"){
                     img=findViewById(R.id.imageView2);
-                    byte[] decodedString = Base64.decode(imgstring, Base64.DEFAULT);
-                    Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-                    img.setImageBitmap(decodedByte);
-                }
+                img=findViewById(R.id.imageView2);
                 title.setText(name);
                 t.setText(str);
+                    try {
+                        byte[] decodedString = Base64.decode(imgstring, Base64.DEFAULT);
+                        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                        img.setImageBitmap(decodedByte);
+                    }
+                    catch(IllegalArgumentException iae){
+                        Toast.makeText(display.this,"no image",Toast.LENGTH_LONG).show();
+                    }
+
+
             }
 
             @Override
@@ -85,5 +94,9 @@ public class display extends AppCompatActivity {
 
         });
 
+    }
+    public void back(View view){
+        Intent intent = new Intent(this, reminder.class);
+        startActivity(intent);
     }
 }
