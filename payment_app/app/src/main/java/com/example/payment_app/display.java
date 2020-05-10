@@ -68,9 +68,6 @@ public class display extends AppCompatActivity {
                 String name=detail.getName();
                 TextView title=findViewById(R.id.title);
                 TextView t=findViewById(R.id.details);
-
-                if (imgstring!="noimg"){
-                    img=findViewById(R.id.imageView2);
                 img=findViewById(R.id.imageView2);
                 title.setText(name);
                 t.setText(str);
