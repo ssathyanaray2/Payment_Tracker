@@ -53,7 +53,7 @@ public class popup extends AppCompatActivity {
     private static final int Permission_code=1000;
     private static final int Image_cap_code=1001;
     Bitmap bitmap;
-    String imageString="a";
+    String imageString="noimg";
 
     private int MY_PERMISSIONS_REQUEST_WRITE_CALENDAR=0;
     boolean permission_granted=false;
