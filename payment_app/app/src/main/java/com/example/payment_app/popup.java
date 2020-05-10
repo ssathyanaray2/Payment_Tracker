@@ -164,15 +164,13 @@ public class popup extends AppCompatActivity {
                     reminder(email,date,endda,name,desc,interval,radionum);
                 }
 
-
-                String eveid=Long.toString(eventID);
                 //String dmy=Integer.toString(radionum);
                 HashMap<String,Object> map = new HashMap<>();
                 map.put("name",name);
                 map.put("description",desc);
                 map.put("date",date);
                 map.put("period",interval);
-                map.put("eventid",eveid);
+                map.put("eventid",eventID);
                 map.put("edate",endda);
                 map.put("dmy",dmy);
                 map.put("img",imageString);

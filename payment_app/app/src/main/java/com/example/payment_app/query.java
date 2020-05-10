@@ -27,6 +27,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class query extends popup {
@@ -36,8 +37,9 @@ public class query extends popup {
 
     private static final int PROJECTION_ID_INDEX = 0;
     FirebaseUser user;
-    private FirebaseAuth mAuth;
     HashMap<Long, Integer> map = new HashMap<>();
+    Double balance=20000.0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +48,7 @@ public class query extends popup {
     }
 
     public void getevents(){
-        mAuth=FirebaseAuth.getInstance();
-        user=mAuth.getCurrentUser();
+        user=FirebaseAuth.getInstance().getCurrentUser();
         String email=user.getEmail().toString();
         Calendar beginTime = Calendar.getInstance();
         beginTime.set(2020, 4, 23, 8, 0);
@@ -87,29 +88,27 @@ public class query extends popup {
 
     public void qry(View view){
         getevents();
+        user=FirebaseAuth.getInstance().getCurrentUser();
         String uid=user.getUid().toString();
+        database = FirebaseDatabase.getInstance();
         mRef = database.getReference().child(uid);
         mRef.addValueEventListener(new ValueEventListener() {
             public void onDataChange(DataSnapshot datasnapshot) {
                 adapter amt;
-                Double balance=20000.0;
                 for(DataSnapshot ds: datasnapshot.getChildren()) {
                     amt = ds.getValue(adapter.class);
-                    if(map.containsKey(amt.getEventid()){
+                    if(map.containsKey(amt.getEventid())){
                         balance+=(amt.getAmount()*amt.getCrdr()*map.get(amt.getEventid()));
                     }
                 }
+                Log.i("balance",Double.toString(balance));
             }
 
             public void onCancelled(DatabaseError dataerr) {
                 Toast.makeText(query.this, "No events in given time range", Toast.LENGTH_LONG).show();
             }
         });
-
-
     }
-
-
     }
 
 

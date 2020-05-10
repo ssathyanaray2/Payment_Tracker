@@ -6,7 +6,7 @@ public class adapter {
     private String date;
     private String period;
     private String edate;
-    private String eventid;
+    private Long eventid;
     private String dmy;
     private String img;
     private Double amount;
@@ -15,7 +15,7 @@ public class adapter {
 
 
 
-    public adapter(String name, String description, String date, String period,String edate,String eventid,String dmy,String img,Double amount,int crdr) {
+    public adapter(String name, String description, String date, String period,String edate,Long eventid,String dmy,String img,Double amount,int crdr) {
         this.name = name;
         this.description=description;
         this.date=date;
@@ -68,7 +68,7 @@ public class adapter {
         return edate;
     }
 
-    public String getEventid() {
+    public Long getEventid() {
         return eventid;
     }
 
@@ -92,7 +92,7 @@ public class adapter {
         this.edate = edate;
     }
 
-    public void setEventid(String eventid) {
+    public void setEventid(Long eventid) {
         this.eventid = eventid;
     }
 
