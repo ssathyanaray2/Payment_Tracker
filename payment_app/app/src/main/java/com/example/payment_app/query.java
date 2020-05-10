@@ -21,6 +21,8 @@ import android.content.pm.PackageManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -38,8 +40,12 @@ public class query extends popup {
     private static final int PROJECTION_ID_INDEX = 0;
     FirebaseUser user;
     HashMap<Long, Integer> map = new HashMap<>();
-    Double balance=20000.0;
-
+    Double balance=0.0;
+    Double income=0.0;
+    Double expense=0.0;
+    private EditText sdatev;
+    private EditText edatev;
+    private EditText balancev;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,11 +56,17 @@ public class query extends popup {
     public void getevents(){
         user=FirebaseAuth.getInstance().getCurrentUser();
         String email=user.getEmail().toString();
+        sdatev=findViewById(R.id.startd);
+        edatev=findViewById(R.id.endd);
+        String sdate=sdatev.getText().toString();
+        String edate=edatev.getText().toString();
+        int[] sdt = strtodmy(sdate);
+        int[] edt = strtodmy(edate);
         Calendar beginTime = Calendar.getInstance();
-        beginTime.set(2020, 4, 23, 8, 0);
+        beginTime.set(sdt[2], sdt[1], sdt[0], 8, 0);
         long startMillis = beginTime.getTimeInMillis();
         Calendar endTime = Calendar.getInstance();
-        endTime.set(2020, 7, 24, 8, 0);
+        endTime.set(edt[2], edt[1], edt[0], 12, 0);
         long endMillis = endTime.getTimeInMillis();
 
         ContentResolver cr = getContentResolver();
@@ -88,6 +100,8 @@ public class query extends popup {
 
     public void qry(View view){
         getevents();
+        balancev=findViewById(R.id.balance);
+        balance=Double.parseDouble(balancev.getText().toString());
         user=FirebaseAuth.getInstance().getCurrentUser();
         String uid=user.getUid().toString();
         database = FirebaseDatabase.getInstance();
@@ -99,9 +113,17 @@ public class query extends popup {
                     amt = ds.getValue(adapter.class);
                     if(map.containsKey(amt.getEventid())){
                         balance+=(amt.getAmount()*amt.getCrdr()*map.get(amt.getEventid()));
+                        if(amt.getCrdr()==1){
+                            income+=amt.getAmount()*map.get(amt.getEventid());
+                        }
+                        else{
+                            expense+=amt.getAmount()*map.get(amt.getEventid());
+                        }
                     }
                 }
-                Log.i("balance",Double.toString(balance));
+                String res="Total income :"+income+"\n"+"Total Expenditure: "+expense+"\n"+"Remaining balance: "+balance+"\n";
+                TextView result=findViewById(R.id.results);
+                result.setText(res);
             }
 
             public void onCancelled(DatabaseError dataerr) {

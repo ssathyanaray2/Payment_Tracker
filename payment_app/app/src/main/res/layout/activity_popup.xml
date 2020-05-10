@@ -19,6 +19,7 @@
         android:inputType="text"
         android:paddingStart="20dp"
         android:paddingEnd="10dp"
+        android:textCursorDrawable="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -35,6 +36,7 @@
         android:inputType="numberDecimal"
         android:paddingStart="20dp"
         android:paddingEnd="10dp"
+        android:textCursorDrawable="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/enddate" />
@@ -51,6 +53,7 @@
         android:inputType="text"
         android:paddingStart="20dp"
         android:paddingEnd="10dp"
+        android:textCursorDrawable="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
@@ -68,6 +71,7 @@
         android:inputType="date"
         android:paddingStart="20dp"
         android:paddingEnd="10dp"
+        android:textCursorDrawable="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/desc" />
@@ -133,6 +137,7 @@
         android:inputType="number"
         android:paddingStart="20dp"
         android:paddingEnd="10dp"
+        android:textCursorDrawable="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
@@ -148,6 +153,7 @@
         android:inputType="date"
         android:paddingStart="20dp"
         android:paddingEnd="10dp"
+        android:textCursorDrawable="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/interval" />
