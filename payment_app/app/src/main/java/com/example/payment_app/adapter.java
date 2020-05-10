@@ -9,11 +9,13 @@ public class adapter {
     private String eventid;
     private String dmy;
     private String img;
+    private Double amount;
+    private int crdr;
     public adapter(){};
 
 
 
-    public adapter(String name, String description, String date, String period,String edate,String eventid,String dmy,String img) {
+    public adapter(String name, String description, String date, String period,String edate,String eventid,String dmy,String img,Double amount,int crdr) {
         this.name = name;
         this.description=description;
         this.date=date;
@@ -22,6 +24,8 @@ public class adapter {
         this.eventid=eventid;
         this.dmy=dmy;
         this.img=img;
+        this.amount=amount;
+        this.crdr=crdr;
     }
 
     public String getImg() {
@@ -31,6 +35,14 @@ public class adapter {
     public void setImg(String img) {
         this.img = img;
     }
+    public Double getAmount() {
+        return amount;
+    }
+
+    public int getCrdr() {
+        return crdr;
+    }
+
 
     public String getPeriod() {
         return period;
@@ -88,6 +100,12 @@ public class adapter {
         this.dmy = dmy;
     }
 
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
 
+    public void setCrdr(int crdr) {
+        this.crdr = crdr;
+    }
 
 }

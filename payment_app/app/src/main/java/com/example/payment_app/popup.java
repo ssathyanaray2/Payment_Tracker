@@ -45,8 +45,11 @@ public class popup extends AppCompatActivity {
     private EditText descv;
     private EditText intervalv;
     private EditText endd;
+    private EditText amountv;
     RadioGroup radiogrp;
-    RadioButton radiobutton;
+    //RadioButton radiobutton;
+    RadioGroup rdgrp;
+
     private static final int Permission_code=1000;
     private static final int Image_cap_code=1001;
     Bitmap bitmap;
@@ -81,6 +84,8 @@ public class popup extends AppCompatActivity {
         endd=findViewById(R.id.enddate);
         add=findViewById(R.id.add);
         radiogrp=findViewById(R.id.radioGroup);
+        amountv=findViewById(R.id.amount);
+        rdgrp=findViewById(R.id.rdgrp);
 
         user=mAuth.getCurrentUser();
         final String uid=user.getUid().toString();
@@ -120,14 +125,13 @@ public class popup extends AppCompatActivity {
                  String date= datev.getText().toString();
                  String endda=endd.getText().toString();
                  String interval=intervalv.getText().toString();
-
-                /* int int_interval;
+                 String amount=amountv.getText().toString();
+                 Double amt;
                 try{
-                    int_interval=Integer.parseInt(interval);
-                }
+                    amt=Double.parseDouble(amount);                }
                 catch(NumberFormatException e){
-                    int_interval=0;
-                }*/
+                    amt=0.0;
+                }
                 int radioId=radiogrp.getCheckedRadioButtonId();
                 int radionum=1;
                 String dmy="No repetition";
@@ -145,6 +149,17 @@ public class popup extends AppCompatActivity {
                         dmy="years";
                         break;
                 }
+                int rdid=rdgrp.getCheckedRadioButtonId();
+                int crdr=0;
+                switch (rdid){
+                    case R.id.dr:
+                        crdr=-1;
+                        break;
+                    case R.id.cr:
+                        crdr=+1;
+                        break;
+                }
+
                 if(permission_granted) {
                     reminder(email,date,endda,name,desc,interval,radionum);
                 }
@@ -161,6 +176,8 @@ public class popup extends AppCompatActivity {
                 map.put("edate",endda);
                 map.put("dmy",dmy);
                 map.put("img",imageString);
+                map.put("amount",amt);
+                map.put("crdr",crdr);
                 FirebaseDatabase.getInstance().getReference().child(uid).push().setValue(map);
                 startActivity(new Intent(popup.this, reminder.class));
                 

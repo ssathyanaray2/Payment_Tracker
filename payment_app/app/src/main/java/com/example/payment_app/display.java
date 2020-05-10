@@ -54,7 +54,15 @@ public class display extends AppCompatActivity {
                 else{
                         repeat="Repeats every "+detail.getPeriod()+" "+s;
                 }
-                str="Description: "+detail.getDescription()+"\n"+"Start date: "+detail.getDate()+"\n"+"End Date: "+detail.getEdate()+"\n"+repeat+"\n";
+                str="Description: "+detail.getDescription()+"\n"+"Start date: "+detail.getDate()+"\n"+"End Date: "+detail.getEdate()+"\n"+repeat+"\n"+detail.getAmount();
+                int i=detail.getCrdr();
+                if(i==1){
+                    str=str+"(+)";
+                }
+                else{
+                    str=str+"(-)";
+
+                }
                 String name=detail.getName();
                 TextView title=findViewById(R.id.title);
                 TextView t=findViewById(R.id.details);

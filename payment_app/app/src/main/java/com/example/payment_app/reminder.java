@@ -116,8 +116,10 @@ public class reminder extends AppCompatActivity {
         startActivity(intent);
     }
 
-
-
+    public void query(View view){
+        Intent intent = new Intent(this, query.class);
+        startActivity(intent);
+    }
     
 
 }

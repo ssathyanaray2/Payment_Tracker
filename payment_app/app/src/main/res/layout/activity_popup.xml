@@ -32,7 +32,7 @@
         android:ems="10"
         android:hint="Amount"
         android:includeFontPadding="true"
-        android:inputType="text"
+        android:inputType="numberDecimal"
         android:paddingStart="20dp"
         android:paddingEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
