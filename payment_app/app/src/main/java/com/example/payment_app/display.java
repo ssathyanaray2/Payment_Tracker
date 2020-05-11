@@ -35,17 +35,18 @@ import com.google.android.gms.tasks.Task;
 public class display extends AppCompatActivity {
     private FirebaseAuth mAuth;
     FirebaseDatabase database;
-    DatabaseReference mRef;
+    DatabaseReference mRef,mref;
     FirebaseUser user;
     adapter detail;
     ImageView img;
     long event_id;
+    String key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
-        final String key = getIntent().getStringExtra("key");
+        key = getIntent().getStringExtra("key");
         database = FirebaseDatabase.getInstance();
         mAuth=FirebaseAuth.getInstance();
         user=mAuth.getCurrentUser();
@@ -55,51 +56,50 @@ public class display extends AppCompatActivity {
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot datasnapshot) {
-                detail = datasnapshot.getValue(adapter.class);
-                String repeat;
-                String s=detail.getDmy();
-                String str;
-                String imgstring=detail.getImg();
-                if("No repetition".equals(s)) {
-                    repeat = s;
-                    //str="Name: "+detail.getName()+"\n"+"Description: "+detail.getDescription()+"\n"+"Start date: "+detail.getDate()+"\n"+"End Date: "+detail.getEdate()+"\n";
-                }
-                else{
-                        repeat="Repeats every "+detail.getPeriod()+" "+s;
-                }
-                str="Description: "+detail.getDescription()+"\n"+"Start date: "+detail.getDate()+"\n"+"End Date: "+detail.getEdate()+"\n"+repeat+"\n"+detail.getAmount();
-                int i=detail.getCrdr();
-                if(i==1){
-                    str=str+"(+)";
-                }
-                else{
-                    str=str+"(-)";
+                if (datasnapshot.exists()) {
+                    detail = datasnapshot.getValue(adapter.class);
+                    String repeat;
+                    String s = detail.getDmy();
+                    String str;
+                    String imgstring = detail.getImg();
+                    if ("No repetition".equals(s)) {
+                        repeat = s;
+                        //str="Name: "+detail.getName()+"\n"+"Description: "+detail.getDescription()+"\n"+"Start date: "+detail.getDate()+"\n"+"End Date: "+detail.getEdate()+"\n";
+                    } else {
+                        repeat = "Repeats every " + detail.getPeriod() + " " + s;
+                    }
+                    str = "Description: " + detail.getDescription() + "\n" + "Start date: " + detail.getDate() + "\n" + "End Date: " + detail.getEdate() + "\n" + repeat + "\n" + detail.getAmount();
+                    int i = detail.getCrdr();
+                    if (i == 1) {
+                        str = str + "(+)";
+                    } else {
+                        str = str + "(-)";
 
-                }
-                event_id=detail.getEventid();
-                String name=detail.getName();
-                TextView title=findViewById(R.id.title);
-                TextView t=findViewById(R.id.details);
-                img=findViewById(R.id.imageView2);
-                title.setText(name);
-                t.setText(str);
+                    }
+                    event_id = detail.getEventid();
+                    String name = detail.getName();
+                    TextView title = findViewById(R.id.title);
+                    TextView t = findViewById(R.id.details);
+                    img = findViewById(R.id.imageView2);
+                    title.setText(name);
+                    t.setText(str);
                     try {
                         byte[] decodedString = Base64.decode(imgstring, Base64.DEFAULT);
                         Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                         img.setImageBitmap(decodedByte);
-                    }
-                    catch(IllegalArgumentException iae){
-                        Toast.makeText(display.this,"no image",Toast.LENGTH_LONG).show();
+                    } catch (IllegalArgumentException iae) {
+                        Toast.makeText(display.this, "no image", Toast.LENGTH_LONG).show();
                     }
 
 
+                }
             }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(display.this, "Value not displayed", Toast.LENGTH_LONG).show();
+                @Override
+                public void onCancelled (DatabaseError databaseError){
+                    Toast.makeText(display.this, "Value not displayed", Toast.LENGTH_LONG).show();
 
-            }
+                }
 
         });
 
@@ -117,18 +117,21 @@ public class display extends AppCompatActivity {
         int rows = cr.delete(deleteUri, null, null);
         Toast.makeText(display.this,"deleted",Toast.LENGTH_LONG).show();
 
-        final String key = getIntent().getStringExtra("key");
         database = FirebaseDatabase.getInstance();
         mAuth=FirebaseAuth.getInstance();
         user=mAuth.getCurrentUser();
         String uid=user.getUid().toString();
-        mRef = database.getReference().child(uid).child(key);
-        mRef.setValue(null);
+        mref = database.getReference().child(uid).child(key);
+        mref.setValue(null);
+
     }
     public void delete(View view){
         deleteeve(event_id);
         Intent intent = new Intent(this, reminder.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+        finish();
+
     }
 }
 /*
