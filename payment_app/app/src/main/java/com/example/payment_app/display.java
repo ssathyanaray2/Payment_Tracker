@@ -35,7 +35,7 @@ import com.google.android.gms.tasks.Task;
 public class display extends AppCompatActivity {
     private FirebaseAuth mAuth;
     FirebaseDatabase database;
-    DatabaseReference mRef,mref;
+    DatabaseReference mRef;
     FirebaseUser user;
     adapter detail;
     ImageView img;
@@ -121,8 +121,8 @@ public class display extends AppCompatActivity {
         mAuth=FirebaseAuth.getInstance();
         user=mAuth.getCurrentUser();
         String uid=user.getUid().toString();
-        mref = database.getReference().child(uid).child(key);
-        mref.setValue(null);
+        mRef = database.getReference().child(uid).child(key);
+        mRef.setValue(null);
 
     }
 
