@@ -125,6 +125,7 @@ public class display extends AppCompatActivity {
         mref.setValue(null);
 
     }
+
     public void delete(View view){
         deleteeve(event_id);
         Intent intent = new Intent(this, reminder.class);
