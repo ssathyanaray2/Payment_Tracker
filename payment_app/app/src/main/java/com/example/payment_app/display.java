@@ -40,12 +40,12 @@ public class display extends AppCompatActivity {
     adapter detail;
     ImageView img;
     long event_id;
-    final String key = getIntent().getStringExtra("key");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
+        final String key = getIntent().getStringExtra("key");
         database = FirebaseDatabase.getInstance();
         mAuth=FirebaseAuth.getInstance();
         user=mAuth.getCurrentUser();
@@ -115,6 +115,9 @@ public class display extends AppCompatActivity {
         Uri deleteUri = null;
         deleteUri = ContentUris.withAppendedId(Events.CONTENT_URI, eveid);
         int rows = cr.delete(deleteUri, null, null);
+        Toast.makeText(display.this,"deleted",Toast.LENGTH_LONG).show();
+
+        final String key = getIntent().getStringExtra("key");
         database = FirebaseDatabase.getInstance();
         mAuth=FirebaseAuth.getInstance();
         user=mAuth.getCurrentUser();
