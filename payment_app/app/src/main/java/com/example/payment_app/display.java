@@ -29,6 +29,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 public class display extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -38,15 +40,16 @@ public class display extends AppCompatActivity {
     adapter detail;
     ImageView img;
     long event_id;
+    final String key = getIntent().getStringExtra("key");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
-        final String key = getIntent().getStringExtra("key");
         database = FirebaseDatabase.getInstance();
         mAuth=FirebaseAuth.getInstance();
         user=mAuth.getCurrentUser();
-        String uid=user.getUid().toString();
+        final String uid=user.getUid().toString();
         mRef = database.getReference().child(uid).child(key);
 
         mRef.addValueEventListener(new ValueEventListener() {
@@ -112,10 +115,23 @@ public class display extends AppCompatActivity {
         Uri deleteUri = null;
         deleteUri = ContentUris.withAppendedId(Events.CONTENT_URI, eveid);
         int rows = cr.delete(deleteUri, null, null);
-        Toast.makeText(display.this,"deleted",Toast.LENGTH_LONG).show();
+        database = FirebaseDatabase.getInstance();
+        mAuth=FirebaseAuth.getInstance();
+        user=mAuth.getCurrentUser();
+        String uid=user.getUid().toString();
+        mRef = database.getReference().child(uid).child(key);
+        mRef.setValue(null);
     }
-
     public void delete(View view){
         deleteeve(event_id);
+        Intent intent = new Intent(this, reminder.class);
+        startActivity(intent);
     }
 }
+/*
+addOnCompleteListener(new OnCompleteListener<Void>(){
+            public void onComplete(Task<Void> task){
+
+            }
+        });
+ */
