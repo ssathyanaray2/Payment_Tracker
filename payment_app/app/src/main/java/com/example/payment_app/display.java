@@ -124,11 +124,13 @@ public class display extends AppCompatActivity {
         String uid=user.getUid().toString();
         mRef = database.getReference().child(uid).child(key);
         mRef.setValue(null);
+        finish();
     }
+
     public void delete(View view){
         deleteeve(event_id);
-        Intent intent = new Intent(this, reminder.class);
-        startActivity(intent);
+        /*Intent intent = new Intent(this, reminder.class);
+        startActivity(intent);*/
     }
 }
 /*
