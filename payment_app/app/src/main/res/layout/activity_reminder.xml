@@ -44,12 +44,12 @@
 
     <Button
         android:id="@+id/query"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="25dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/calculate"
         android:onClick="query"
-        android:text="Button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

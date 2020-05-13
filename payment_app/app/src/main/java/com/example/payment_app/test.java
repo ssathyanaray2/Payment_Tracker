@@ -35,7 +35,6 @@ public class test extends AppCompatActivity {
                 startSignIn();
             }
         });
-        //Intent intent = getIntent();
     }
     private void startSignIn(){
         String email=EmailField.getText().toString().trim();
@@ -52,7 +51,10 @@ public class test extends AppCompatActivity {
                     else{
                         finish();
                         Toast.makeText(test.this, "SignedIn", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(test.this, reminder.class));
+                        Intent intent=new Intent(test.this, reminder.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                        finish();
                     }
                 }
             });
