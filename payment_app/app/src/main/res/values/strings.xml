@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Payment Tracker</string>
+    <string name="app_name">Payment\nTracker</string>
     <string name="Testing">Testing</string>
     <string name="Email">Email</string>
     <string name="Password">Password</string>

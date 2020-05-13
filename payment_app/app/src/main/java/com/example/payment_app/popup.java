@@ -177,8 +177,10 @@ public class popup extends AppCompatActivity {
                 map.put("amount",amt);
                 map.put("crdr",crdr);
                 FirebaseDatabase.getInstance().getReference().child(uid).push().setValue(map);
-                startActivity(new Intent(popup.this, reminder.class));
-                
+                Intent intent = new Intent(popup.this, reminder.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
             }
             });
         

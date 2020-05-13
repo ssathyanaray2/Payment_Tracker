@@ -68,7 +68,10 @@ public class reminder extends AppCompatActivity {
             public void onClick(View view){
                 Toast.makeText(reminder.this, "Signed out", Toast.LENGTH_LONG).show();
                 mAuth.signOut();
-                startActivity(new Intent(reminder.this, test.class));
+                Intent intent=new Intent(reminder.this, test.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
             }
         });
 

@@ -63,7 +63,10 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser!=null)
         {
-            startActivity(new Intent(MainActivity.this, reminder.class));
+            Intent intent=new Intent(MainActivity.this, reminder.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
         }
     }
 
@@ -87,8 +90,9 @@ public class MainActivity extends AppCompatActivity {
                                 finish();
                                 Toast.makeText(MainActivity.this, "Registered", Toast.LENGTH_LONG).show();
                                 Intent intent=new Intent(MainActivity.this, reminder.class);
-                                //intent.putExtra("uid",123);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
+                                finish();
 
                             } else {
                                 Toast.makeText(MainActivity.this, "Registration Problem", Toast.LENGTH_LONG).show();
