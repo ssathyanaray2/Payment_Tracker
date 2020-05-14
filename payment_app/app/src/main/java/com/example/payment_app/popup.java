@@ -133,7 +133,7 @@ public class popup extends AppCompatActivity {
                     amt=0.0;
                 }
                 int radioId=radiogrp.getCheckedRadioButtonId();
-                int radionum=1;
+                int radionum=0;
                 String dmy="No repetition";
                 switch (radioId){
                     case R.id.day:
@@ -258,6 +258,9 @@ public class popup extends AppCompatActivity {
         if(endate.length()>0){
             int[] end = strtodmy(endate);
             switch(radio){
+                case 0:
+                    rrule="";
+                    break;
                 case 1:
                     //int eday=end[0]+1
                     rrule="FREQ=DAILY;INTERVAL="+interval+";UNTIL="+addzero(end[2])+addzero(end[1])+addzero(end[0]);
@@ -292,6 +295,9 @@ public class popup extends AppCompatActivity {
         eventValues.put(CalendarContract.Events.DTSTART, startMillis);
         eventValues.put(CalendarContract.Events.DURATION, "PT3H");
         eventValues.put(CalendarContract.Events.HAS_ALARM, 1);
+        if(radio!=0){
+            eventValues.put(CalendarContract.Events.RRULE, rrule);
+        }
         eventValues.put(CalendarContract.Events.RRULE, rrule);
         eventValues.put("eventStatus", 1);
 
