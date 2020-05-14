@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentResolver;
 import android.content.ContentUris;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -20,6 +21,7 @@ import android.content.ContentValues;
 import android.content.pm.PackageManager;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -97,6 +99,12 @@ public class query extends popup {
 
 
     }
+    private void hideSoftKeyboard(){
+        if(getCurrentFocus()!=null && getCurrentFocus() instanceof EditText){
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(edatev.getWindowToken(), 0);
+        }
+    }
 
     public void qry(View view){
         getevents();
@@ -121,9 +129,11 @@ public class query extends popup {
                         }
                     }
                 }
+                hideSoftKeyboard();
                 String res="Total income :"+income+"\n"+"Total Expenditure: "+expense+"\n"+"Remaining balance: "+balance+"\n";
                 TextView result=findViewById(R.id.results);
                 result.setText(res);
+
             }
 
             public void onCancelled(DatabaseError dataerr) {
