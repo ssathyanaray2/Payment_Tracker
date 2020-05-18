@@ -87,7 +87,7 @@ public class query extends popup {
         while (eventCursor.moveToNext()) {
             long eventID;
             eventID = eventCursor.getLong(PROJECTION_ID_INDEX);
-
+            //Log.i("eveid",Long.toString(eventID));
             if(map.containsKey(eventID)){
                 i=map.get(eventID)+1;
                 map.put(eventID,i);
