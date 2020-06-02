@@ -1,5 +1,4 @@
 package mail;
-
 import java.util.Properties;
 import java.util.Scanner;
 import javax.mail.Message;
@@ -16,10 +15,23 @@ public class JavaEmail
     Scanner in = new Scanner(System.in); 
     public static void main(String args[]) throws AddressException, MessagingException
     {
-        JavaEmail javaEmail = new JavaEmail();
-        javaEmail.setMailServerProperties();
-        //javaEmail.draftEmailMessage();
-        javaEmail.sendEmail();
+    	JavaEmail javaEmail = new JavaEmail();
+    	javaEmail.jmail();
+    }
+    
+    private void jmail() {
+    	JavaEmail javaEmail = new JavaEmail();
+    	try {
+            
+            javaEmail.setMailServerProperties();
+            //javaEmail.draftEmailMessage();
+            javaEmail.sendEmail();
+        	}
+            
+            catch(Exception  ae) { 
+            System.out.println("Email or Password incorrect. Re-Enter email or password.");
+            javaEmail.jmail();
+            }
     }
  
     private void setMailServerProperties()
@@ -71,3 +83,4 @@ public class JavaEmail
         System.out.println("Email sent successfully.");
     }
 }
+
