@@ -16,16 +16,14 @@ public class JavaEmail
     Scanner in = new Scanner(System.in); 
     public static void main(String args[]) throws AddressException, MessagingException
     {
+    	JavaEmail javaEmail = new JavaEmail();
+        javaEmail.setMailServerProperties();
         try {
-        	JavaEmail javaEmail = new JavaEmail();
-            javaEmail.setMailServerProperties();
             javaEmail.sendEmail();
         	}
             
-            catch(Exception  ae) { 
-            System.out.println("Email or Password incorrect. Re-Enter email or password.");
-            JavaEmail javaEmail = new JavaEmail();
-            javaEmail.setMailServerProperties();
+        catch(Exception e) { 
+            System.out.println("Email or Password incorrect. Re-Enter credentials.");
             javaEmail.sendEmail();
             }
     }
