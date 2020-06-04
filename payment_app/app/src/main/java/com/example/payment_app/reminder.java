@@ -80,7 +80,7 @@ public class reminder extends AppCompatActivity {
         String TAG="encrypt";
         String encr=aes.encrypt(st,key);
         String decr=aes.decrypt(encr,key);
-        Toast.makeText(reminder.this, decr, Toast.LENGTH_LONG).show();
+        //Toast.makeText(reminder.this, decr, Toast.LENGTH_LONG).show();
         Log.i(TAG,st);
         Log.i(TAG,encr);
         Log.i(TAG,decr);

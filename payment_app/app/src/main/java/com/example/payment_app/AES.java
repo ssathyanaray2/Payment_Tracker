@@ -8,12 +8,14 @@ import java.util.Arrays;
 import android.util.Base64;
 
 import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 public class AES {
 
     private static SecretKeySpec secretKey;
     private static byte[] key;
+    private static final String initVector = "encryptionIntVec";
 
     public static void setKey(String myKey)
     {
@@ -38,8 +40,10 @@ public class AES {
         try
         {
             setKey(secret);
-            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-            cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+            IvParameterSpec iv = new IvParameterSpec(initVector.getBytes("UTF-8"));
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+            cipher.init(Cipher.ENCRYPT_MODE, secretKey, iv);
+
             //return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
             return Base64.encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")), Base64.DEFAULT);
         }
@@ -55,8 +59,9 @@ public class AES {
         try
         {
             setKey(secret);
-            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
-            cipher.init(Cipher.DECRYPT_MODE, secretKey);
+            IvParameterSpec iv = new IvParameterSpec(initVector.getBytes("UTF-8"));
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
+            cipher.init(Cipher.DECRYPT_MODE, secretKey, iv);
             //return new String(cipher.doFinal(Base64.getDecoder().decode(strToDecrypt)));
             return new String(cipher.doFinal(Base64.decode(strToDecrypt,Base64.DEFAULT)));
         }
