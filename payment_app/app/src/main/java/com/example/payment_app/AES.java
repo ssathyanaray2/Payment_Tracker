@@ -41,7 +41,7 @@ public class AES {
             Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
             cipher.init(Cipher.ENCRYPT_MODE, secretKey);
             //return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
-            return Base64.encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8"), Base64.DEFAULT));
+            return Base64.encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")), Base64.DEFAULT);
         }
         catch (Exception e)
         {
@@ -58,7 +58,7 @@ public class AES {
             Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
             cipher.init(Cipher.DECRYPT_MODE, secretKey);
             //return new String(cipher.doFinal(Base64.getDecoder().decode(strToDecrypt)));
-            return new String(Base64.decode(cipher.doFinal(strToDecrypt,Base64.DEFAULT));
+            return new String(cipher.doFinal(Base64.decode(strToDecrypt,Base64.DEFAULT)));
         }
         catch (Exception e)
         {
