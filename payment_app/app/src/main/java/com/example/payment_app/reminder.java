@@ -59,6 +59,7 @@ public class reminder extends AppCompatActivity {
         setContentView(R.layout.activity_reminder);
         Button signout=findViewById(R.id.button2);
         mAuth=FirebaseAuth.getInstance();
+        user=mAuth.getCurrentUser();
         liv=findViewById(R.id.listv);
         list=new ArrayList<>();
         fuser=new adapter();
@@ -76,11 +77,11 @@ public class reminder extends AppCompatActivity {
         });
         AES aes = new AES();
         String st="Mystr";
-        String key="abc123";
+        String key=user.getUid();
         String TAG="encrypt";
         String encr=aes.encrypt(st,key);
         String decr=aes.decrypt(encr,key);
-        //Toast.makeText(reminder.this, decr, Toast.LENGTH_LONG).show();
+        Toast.makeText(reminder.this, decr, Toast.LENGTH_LONG).show();
         Log.i(TAG,st);
         Log.i(TAG,encr);
         Log.i(TAG,decr);
