@@ -165,8 +165,9 @@ public class popup extends AppCompatActivity {
                 }
 
                 //String dmy=Integer.toString(radionum);
+                AES aes = new AES();
                 HashMap<String,Object> map = new HashMap<>();
-                map.put("name",name);
+                map.put("name",aes.encrypt(name,uid));
                 map.put("description",desc);
                 map.put("date",date);
                 map.put("period",interval);
