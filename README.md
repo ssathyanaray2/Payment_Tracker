@@ -1,7 +1,7 @@
 # Payment_Tracker
  
 # Overview 
-Payment Tracker is a Android application designed to help users manage and track periodic payments. The app notifies users about due payments, securely stores related details, and provides insights into income and expenditure over a selected period.  
+Payment Tracker is an Android application designed to help users manage and track periodic payments. The app notifies users about due payments, securely stores related details, and provides insights into income and expenditure over a selected period.  
 
 This project was developed as part of a **Software Engineering coursework**, following a structured approach that included **requirement analysis, system design, and documentation**. The repository contains:  
 - **Software Requirement Specification (SRS)**  
